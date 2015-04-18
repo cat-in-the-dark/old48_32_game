@@ -36,6 +36,8 @@ object Assets {
     val wndNightGate = new Texture(Gdx.files.internal("textures/window_grid_night.gif"))
     val wndNightNotBought = new Texture(Gdx.files.internal("textures/window_night_disabled.gif"))
 
+    val babkaInWnd = new Texture(Gdx.files.internal("textures/babka_in_window.gif"))
+
   }
 
   object Fonts {

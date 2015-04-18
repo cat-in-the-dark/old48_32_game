@@ -17,9 +17,9 @@ object RenderFactory {
     val rooms = lvl.map(row => {
       row.map(roomType => {
         val room = roomType match {
-          case (1, price) => PotRoom(false, false, false, false, price)
-          case (2, price) => TVRoom(false, false, false, false, price)
-          case (3, price) => RoyalRoom(false, false, false, false, price)
+          case (1, price) => PotRoom(false, false, false, false, true, price)
+          case (2, price) => TVRoom(false, false, false, false, true, price)
+          case (3, price) => RoyalRoom(false, false, false, false, true, price)
         }
         room.asInstanceOf[Room]
       })
@@ -27,8 +27,8 @@ object RenderFactory {
     val (x, y) = Const.Difficulty.firstRoom
     rooms(x)(y).bought = true
     rooms(x)(y).armed = true
-    rooms(x+1)(y).bought = true
-    rooms(x+1)(y).armed = true
+    rooms(x + 1)(y).bought = true
+    rooms(x + 1)(y).armed = true
 
     rooms
   }

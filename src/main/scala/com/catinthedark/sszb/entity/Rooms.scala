@@ -10,6 +10,7 @@ sealed trait Room {
   var broken: Boolean
   var grate: Boolean
   var armed: Boolean
+  var cooldown: Boolean
   val basePrice: Int
 
   def repairPrice: Int = basePrice * Const.Difficulty.repairMul
@@ -18,20 +19,17 @@ sealed trait Room {
   def gratePrice: Int = basePrice * Const.Difficulty.grateMul
 }
 
-case class RoyalRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean, var armed: Boolean, basePrice: Int)
-  extends Room
-{
+case class RoyalRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean, var armed: Boolean, var cooldown: Boolean, basePrice: Int)
+  extends Room {
   override def weaponPrice = basePrice * Const.Difficulty.royalMul
 }
 
-case class PotRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean, var armed: Boolean, basePrice: Int)
-  extends Room
-{
+case class PotRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean, var armed: Boolean, var cooldown: Boolean, basePrice: Int)
+  extends Room {
   override def weaponPrice = basePrice * Const.Difficulty.potMul
 }
 
-case class TVRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean, var armed: Boolean, basePrice: Int)
-  extends Room
-{
+case class TVRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean, var armed: Boolean, var cooldown: Boolean, basePrice: Int)
+  extends Room {
   override def weaponPrice = basePrice * Const.Difficulty.tvMul
 }

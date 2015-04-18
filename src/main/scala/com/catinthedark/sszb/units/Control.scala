@@ -36,10 +36,10 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
         }
 
         currentRoom = keycode match {
-          case Input.Keys.UP if x > 0 && canUseRoom(x - 1, y) => (x - 1, y)
-          case Input.Keys.DOWN if x < rooms.length - 1 && canUseRoom(x + 1, y) => (x + 1, y)
+          case Input.Keys.DOWN if x > 0 && canUseRoom(x - 1, y) => (x - 1, y)
+          case Input.Keys.UP if x < rooms.length - 1 && canUseRoom(x + 1, y) => (x + 1, y)
           case Input.Keys.RIGHT if y < rooms(0).length - 1 && canUseRoom(x, y + 1) => (x, y + 1)
-          case Input.Keys.LEFT if y > 0 && canUseRoom(x - 1, y) => (x - 1, y)
+          case Input.Keys.LEFT if y > 0 && canUseRoom(x, y - 1) => (x, y - 1)
           case _ => (x, y)
         }
         onMoved(currentRoom)

@@ -50,6 +50,11 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     override def render(delta: Float): Unit = {
       bgBatch.managed { self =>
         self.draw(Assets.Textures.bg, 0, 0)
+        println(s"croom: $currentRoom")
+        val (x, y) = currentRoom
+        if (shared.rooms(x)(y).cooldown) {
+          self.draw(Textures.babkaInWnd, y * 128 + 128, x * 128 + 256)
+        }
       }
       wndBatch.managed { self =>
         for (i <- 0 to shared.rooms.length - 1;
