@@ -1,8 +1,11 @@
 package com.catinthedark.sszb
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.{InputAdapter, Input, Gdx}
 import com.catinthedark.sszb.entity.Room
 import com.catinthedark.sszb.lib.YieldUnit
+import com.catinthedark.sszb.lib.Magic._
+import Assets.Textures
 
 /**
  * Created by over on 18.04.15.
@@ -20,7 +23,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   }
 
   def buy(room: Room) = {
-    if (shared.money >= room.buyPrice ) {
+    if (shared.money >= room.buyPrice) {
       room.bought = true
       shared.money -= room.buyPrice
     } else {
@@ -87,11 +90,25 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     })
   }
 
+  val batch = new SpriteBatch
+
   override def onExit(): Unit = {
 
   }
 
+  def render(): Unit = {
+    batch.managed { self =>
+      self.draw(Textures.bg, 0, 0)
+      for (i <- 0 to shared.rooms.length - 1;
+           j <- 0 to shared.rooms(0).length - 1) {
+        val room = shared.rooms(i)(j)
+        self.draw(Textures.wndDayNormal, j * 128 + 128, i * 128 + 256)
+      }
+    }
+  }
+
   override def run(delta: Float): Option[Boolean] = {
+    render()
     if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
       Some(false)
     else
