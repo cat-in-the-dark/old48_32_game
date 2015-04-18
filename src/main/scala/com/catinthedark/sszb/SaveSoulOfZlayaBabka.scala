@@ -1,10 +1,12 @@
 package com.catinthedark.sszb
 
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.{Game, Gdx, Input}
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.lib._
+import com.catinthedark.sszb.units.RenderFactory
 
 import scala.collection.mutable
 import scala.util.Random
@@ -18,7 +20,7 @@ class SaveSoulOfZlayaBabka extends Game {
   def keyAwait(name: String, tex: Texture, key: Int = Input.Keys.ENTER) =
     new Stub(name) with TextureState with KeyAwaitState {
       val texture: Texture = tex
-      val keycode: Int = key
+      val keycode: Int = Input.Keys.ENTER
     }
 
   def delayed(name: String, tex: Texture, _delay: Float) =
@@ -29,31 +31,6 @@ class SaveSoulOfZlayaBabka extends Game {
 
   val rand = new Random()
 
-  def createHouse(): Array[Array[Room]] = {
-    val lvl = Array(
-      Array((1, 100), (1, 100), (1, 100), (1, 100), (1, 100), (1, 100)),
-      Array((2, 200), (2, 200), (2, 200), (2, 200), (2, 200), (2, 200)),
-      Array((3, 300), (3, 300), (3, 300), (3, 300), (3, 300), (3, 300))
-    )
-    val rooms = lvl.map(row => {
-      row.map(roomType => {
-        val room = roomType match {
-          case (1, price) => PotRoom(false, false, false, false, price)
-          case (2, price) => TVRoom(false, false, false, false, price)
-          case (3, price) => RoyalRoom(false, false, false, false, price)
-        }
-        room.asInstanceOf[Room]
-      })
-    })
-    val (x, y) = Const.Difficulty.firstRoom
-    rooms(x)(y).bought = true
-    rooms(x)(y).armed = true
-    rooms(x+1)(y).bought = true
-    rooms(x+1)(y).armed = true
-
-    rooms
-  }
-
   override def create() = {
 
     val logo = delayed("Logo", Assets.Textures.logo, 1.0f)
@@ -62,11 +39,11 @@ class SaveSoulOfZlayaBabka extends Game {
     val t3 = keyAwait("Tutorial3", Assets.Textures.t3)
     val t4 = keyAwait("Tutorial4", Assets.Textures.t4)
 
-    val shared: Shared = new Shared(createHouse(), mutable.ListBuffer(), 1, 0, Const.Difficulty.startMoney)
+    val shared: Shared = new Shared(RenderFactory.createHouse(), mutable.ListBuffer(), 1, 0, Const.Difficulty.startMoney)
     val night = new NightState(shared)
     val day = new DayState(shared)
 
-    val gameOver = keyAwait("GameOver", Assets.Textures.gameOver)
+    val gameOver = new GameOverState(shared)
     val gameWin = keyAwait("GameWin", Assets.Textures.gameWin)
 
     rm.addRoute(logo, anyway => t1)

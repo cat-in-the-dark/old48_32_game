@@ -45,7 +45,6 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
   override def onExit(): Unit = {
     cheatSkip = false
     units.foreach(_.onExit())
-    shared.money = Difficulty.startMoney;
   }
 
   override def run(delta: Float): Option[Boolean] = {
