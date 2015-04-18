@@ -25,14 +25,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     override def render(delta: Float): Unit = {
       hudBatch.managed { self =>
         self.draw(Assets.Textures.hudBack, UI.hudPos.x, UI.hudPos.y)
-      }
-
-      shapeRenderer.begin(ShapeType.Filled)
-      shapeRenderer.setColor(Color.BLACK)
-      shapeRenderer.rect(UI.hudPos.x + shared.hits * 80, UI.hudPos.y, 400.0f - shared.hits * 80, 64.0f)
-      shapeRenderer.end()
-
-      hudBatch.managed { self =>
+        self.draw(Assets.Textures.hud, UI.hudPos.x, UI.hudPos.y, 80 * shared.hits, 64, 0, 0, 80 * shared.hits, 64, false, false)
         self.draw(Assets.Textures.hudFront, UI.hudPos.x, UI.hudPos.y)
       }
     }

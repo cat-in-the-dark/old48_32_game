@@ -19,6 +19,7 @@ object Assets {
     val gameWin = new Texture(Gdx.files.internal("textures/gamewin.png"))
     val fistLeft = new Texture(Gdx.files.internal("textures/fist_left.png"))
     val hudBack = new Texture(Gdx.files.internal("textures/hud_back.png"))
+    val hud = new Texture(Gdx.files.internal("textures/hud.png"))
     val hudFront = new Texture(Gdx.files.internal("textures/hud_front.png"))
     val bg = new Texture(Gdx.files.internal("textures/bg.gif"))
   }
