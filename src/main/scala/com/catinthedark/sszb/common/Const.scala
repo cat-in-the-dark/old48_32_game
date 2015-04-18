@@ -19,6 +19,14 @@ object Const {
   }
 
   object Difficulty {
+    val startMoney: Int = 100000
+    val grateMul = 80
+    val repairMul = 50
+    val buyMul = 100
+    val royalMul = 4
+    val tvMul = 2
+    val potMul = 1
+
     val seedDivider = 10
     /**
      * seed in range [0,9]

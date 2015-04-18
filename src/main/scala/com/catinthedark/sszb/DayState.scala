@@ -12,27 +12,37 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
 
   def buyOrRepair(room: Room) = {
     if (room.bought) {
-      if (room.broken) {
+      if (room.broken && shared.money >= room.repairPrice) {
         room.broken = false
-        println("Pay money for repair!")
+        shared.money -= room.repairPrice
+      } else {
+        println("You have no money for repairing!")
       }
     } else {
-      room.bought = true
-      println("Pay money for new room!")
+      if (shared.money >= room.buyPrice ) {
+        room.bought = true
+        shared.money -= room.buyPrice
+      } else {
+        println("You have no money for buying new room!")
+      }
     }
   }
 
   def buyGate(room: Room) = {
-    if (!room.grate) {
+    if (!room.grate && shared.money >= room.gratePrice) {
       room.grate = true
-      println("Pay money for grate")
+      shared.money -= room.gratePrice
+    } else {
+      println("You have no money for installing grate")
     }
   }
 
   def buyWeapon(room: Room) = {
-    if (!room.armed) {
+    if (!room.armed && shared.money >= room.weaponPrice) {
       room.armed = true
-      println("Pay money for weapon")
+      shared.money -= room.weaponPrice
+    } else {
+      println("You have no money for installing weapon")
     }
   }
 
@@ -59,7 +69,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
           case _ =>
         }
 
-        println(currentRoom, shared.rooms(currentRoom._1)(currentRoom._2))
+        println(shared.money, currentRoom, shared.rooms(currentRoom._1)(currentRoom._2))
         true
       }
     })
