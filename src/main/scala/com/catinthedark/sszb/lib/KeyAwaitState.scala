@@ -26,5 +26,6 @@ trait KeyAwaitState extends Stub {
 
   override def onExit(): Unit = {
     Gdx.input.setInputProcessor(null)
+    done = false
   }
 }

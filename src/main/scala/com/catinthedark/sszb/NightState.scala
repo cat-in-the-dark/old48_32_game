@@ -45,7 +45,10 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
 
     if (time > Timing.levelTime)
       Some(true)
-    else
+    else if (shared.hits >= 5) {
+      Some(false)
+    } else {
       None
+    }
   }
 }
