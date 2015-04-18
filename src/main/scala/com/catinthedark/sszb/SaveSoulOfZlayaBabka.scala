@@ -12,7 +12,7 @@ import scala.util.Random
 /**
  * Created by over on 13.12.14.
  */
-class SaveMeDadUltra extends Game {
+class SaveSoulOfZlayaBabka extends Game {
   val rm = new RouteMachine()
 
   def keyAwait(name: String, tex: Texture, key: Int = Input.Keys.ENTER) =

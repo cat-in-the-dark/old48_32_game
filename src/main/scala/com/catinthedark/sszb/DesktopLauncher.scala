@@ -14,10 +14,10 @@ import scala.swing._
 object DesktopLauncher {
   def main(args: Array[String]) {
     val conf = new LwjglApplicationConfiguration
-    conf.title = "save-me-dad-ultra"
+    conf.title = "Спаси и Сохрани Злую Бабку"
     conf.height = 768
     conf.width = 1366
 
-    new LwjglApplication(new SaveMeDadUltra, conf)
+    new LwjglApplication(new SaveSoulOfZlayaBabka, conf)
   }
 }
