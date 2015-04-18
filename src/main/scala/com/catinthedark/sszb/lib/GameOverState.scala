@@ -16,6 +16,7 @@ class GameOverState(val shared: Shared) extends Stub("GameOver") with TextureSta
     shared.hits = 0
     shared.rooms = RenderFactory.createHouse()
     shared.creatures.clear()
+    shared.weights.clear()
     super.onActivate()
   }
 }
