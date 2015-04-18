@@ -3,6 +3,7 @@ package com.catinthedark.sszb
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.{InputAdapter, Input, Gdx}
 import com.catinthedark.sszb.common.Const
+import com.catinthedark.sszb.common.Const.UI
 import com.catinthedark.sszb.entity.Room
 import com.catinthedark.sszb.lib.YieldUnit
 import com.catinthedark.sszb.lib.Magic._
@@ -120,6 +121,9 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
         else Textures.wndDayNotBought
 
         self.draw(tex, j * 128 + 128, i * 128 + 256)
+
+        Assets.Fonts.moneyBackFont.draw(self, "$: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
+        Assets.Fonts.moneyFrontFont.draw(self, "$: " + s"${shared.money}", UI.moneyPos.x + 3, UI.moneyPos.y + 3)
       }
       val (x, y) = currentRoom
       self.draw(Textures.frame, y * 128 + 128, x * 128 + 256)
