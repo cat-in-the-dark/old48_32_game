@@ -55,7 +55,7 @@ object Const {
   }
 
   object Timing {
-    val levelTime = 5f
+    val levelTime = 1f
   }
 
   object Ints {
