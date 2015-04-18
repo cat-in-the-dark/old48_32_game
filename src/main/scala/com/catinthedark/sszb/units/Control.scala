@@ -15,7 +15,7 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
       override def keyDown(keycode: Int): Boolean = {
         keycode match {
           case Input.Keys.P =>
-            println("key p pressed")
+            shared.hits += 1
           case _ =>
         }
         true

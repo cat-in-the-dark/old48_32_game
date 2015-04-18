@@ -1,5 +1,6 @@
 package com.catinthedark.sszb
 
+import com.badlogic.gdx.{Input, Gdx}
 import com.catinthedark.sszb.common.Const.Timing
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.Creature
@@ -20,6 +21,7 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
   var paused = false
 
   override def onActivate(): Unit = {
+    shared.hits = 0
     val view = new View(shared) with LocalDeferred
     val control = new Control(shared) with LocalDeferred with Interval {
       override val interval = 0.2f

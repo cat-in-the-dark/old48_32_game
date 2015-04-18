@@ -15,7 +15,7 @@ object Const {
     val colFistY = 770f
     val rowFistX = 160f
 
-    val screenPos = new Vector2(320, 65)
+    val hudPos = new Vector2(920, 620)
   }
 
   object Difficulty {
