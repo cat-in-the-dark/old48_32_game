@@ -27,6 +27,7 @@ object Const {
     val royalMul = 4
     val tvMul = 2
     val potMul = 1
+    val firstRoom = (1, 2)
 
     val seedDivider = 10
     /**
@@ -64,7 +65,7 @@ object Const {
   }
 
   object Timing {
-    val levelTime = 1f
+    val levelTime = 60f
   }
 
   object Ints {

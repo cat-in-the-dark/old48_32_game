@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
+import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.entity.{PotRoom, TVRoom, RoyalRoom}
 import com.catinthedark.sszb.{Shared, Assets}
 import com.catinthedark.sszb.common.Const.UI
@@ -16,6 +17,8 @@ import com.catinthedark.sszb.lib._
  * Created by over on 02.01.15.
  */
 abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
+
+  var currentRoom = Const.Difficulty.firstRoom
 
   val hudLayer = new Layer {
 

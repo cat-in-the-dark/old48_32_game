@@ -1,9 +1,9 @@
 package com.catinthedark.sszb
 
-import com.badlogic.gdx.{Input, Gdx}
+import com.badlogic.gdx.{InputAdapter, Input, Gdx}
 import com.catinthedark.sszb.common.Const.Timing
 import com.catinthedark.sszb.common.Const.Difficulty
-import com.catinthedark.sszb.entity.Creature
+import com.catinthedark.sszb.entity.{Room, Creature}
 import com.catinthedark.sszb.lib._
 import com.catinthedark.sszb.units.{AI, Control, View}
 
@@ -15,6 +15,7 @@ import scala.collection.mutable
 class NightState(shared: Shared) extends YieldUnit[Boolean] {
 
   override def toString = "Game"
+
   var units: Seq[SimpleUnit] = Seq()
   var time = 0f
 
@@ -26,6 +27,8 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     val control = new Control(shared) with LocalDeferred with Interval {
       override val interval = 0.2f
     }
+    control.onMoved + (t => view.currentRoom = t)
+
     val ai = new AI(shared) with Interval {
       override val interval: Float = 1f
     }

@@ -35,7 +35,7 @@ class SaveMeDadUltra extends Game {
       Array((2, 200), (2, 200), (2, 200), (2, 200), (2, 200)),
       Array((3, 300), (3, 300), (3, 300), (3, 300), (3, 300))
     )
-    lvl.map(row => {
+    val rooms = lvl.map(row => {
       row.map(roomType => {
         val room = roomType match {
           case (1, price) => PotRoom(false, false, false, false, price)
@@ -45,6 +45,13 @@ class SaveMeDadUltra extends Game {
         room.asInstanceOf[Room]
       })
     })
+    val (x, y) = Const.Difficulty.firstRoom
+    rooms(x)(y).bought = true
+    rooms(x)(y).armed = true
+    rooms(x+1)(y).bought = true
+    rooms(x+1)(y).armed = true
+
+    rooms
   }
 
   override def create() = {
