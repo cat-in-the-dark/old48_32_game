@@ -10,39 +10,51 @@ import com.catinthedark.sszb.lib.YieldUnit
 class DayState(shared: Shared) extends YieldUnit[Boolean] {
   var currentRoom = (0, 0)
 
+  def repair(room: Room) = {
+    if (shared.money >= room.repairPrice) {
+      room.broken = false
+      shared.money -= room.repairPrice
+    } else {
+      println("You have no money for repairing!")
+    }
+  }
+
+  def buy(room: Room) = {
+    if (shared.money >= room.buyPrice ) {
+      room.bought = true
+      shared.money -= room.buyPrice
+    } else {
+      println("You have no money for buying new room!")
+    }
+  }
+
   def buyOrRepair(room: Room) = {
     if (room.bought) {
-      if (room.broken && shared.money >= room.repairPrice) {
-        room.broken = false
-        shared.money -= room.repairPrice
-      } else {
-        println("You have no money for repairing!")
-      }
+      if (room.broken) repair(room)
     } else {
-      if (shared.money >= room.buyPrice ) {
-        room.bought = true
-        shared.money -= room.buyPrice
-      } else {
-        println("You have no money for buying new room!")
-      }
+      buy(room)
     }
   }
 
   def buyGate(room: Room) = {
-    if (!room.grate && shared.money >= room.gratePrice) {
-      room.grate = true
-      shared.money -= room.gratePrice
-    } else {
-      println("You have no money for installing grate")
+    if (!room.grate) {
+      if (shared.money >= room.gratePrice) {
+        room.grate = true
+        shared.money -= room.gratePrice
+      } else {
+        println("You have no money for installing grate")
+      }
     }
   }
 
   def buyWeapon(room: Room) = {
-    if (!room.armed && shared.money >= room.weaponPrice) {
-      room.armed = true
-      shared.money -= room.weaponPrice
-    } else {
-      println("You have no money for installing weapon")
+    if (!room.armed) {
+      if (shared.money >= room.weaponPrice) {
+        room.armed = true
+        shared.money -= room.weaponPrice
+      } else {
+        println("You have no money for installing weapon")
+      }
     }
   }
 
