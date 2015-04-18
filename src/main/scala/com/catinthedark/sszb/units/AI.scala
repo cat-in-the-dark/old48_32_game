@@ -3,14 +3,14 @@ package com.catinthedark.sszb.units
 import com.catinthedark.sszb.Shared
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{Creatures, Creature, Hooligan}
-import com.catinthedark.sszb.lib.{Interval, SimpleUnit}
+import com.catinthedark.sszb.lib.{Deferred, Interval, SimpleUnit}
 
 import scala.util.Random
 
 /**
  * Created by over on 18.04.15.
  */
-class AI(shared: Shared) extends SimpleUnit {
+abstract class AI(shared: Shared) extends SimpleUnit with Deferred{
   val rand = new Random()
 
   override def run(delta: Float): Unit = {

@@ -22,10 +22,13 @@ object Const {
   }
 
   object Difficulty {
-    val hooliganHealth: Int = 1
-    val whoreHealth: Int = 1
+    val whoreSpeed = 2
+    val hooliganSpeed = 1
 
-    val startMoney: Int = 100000
+    val hooliganHealth = 1
+    val whoreHealth = 1
+
+    val startMoney = 100000
     val grateMul = 80
     val repairMul = 50
     val buyMul = 100

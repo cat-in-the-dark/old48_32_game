@@ -5,7 +5,7 @@ import com.catinthedark.sszb.common.Const.Timing
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{Room, Creature}
 import com.catinthedark.sszb.lib._
-import com.catinthedark.sszb.units.{AI, Control, View}
+import com.catinthedark.sszb.units.{AIControl, AI, Control, View}
 
 import scala.collection.mutable
 
@@ -31,10 +31,12 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     control.onMoved + (t => view.currentRoom = t)
     control.onManualDay + (_ => cheatSkip = true)
 
-    val ai = new AI(shared) with Interval {
+    val ai = new AI(shared) with Interval with LocalDeferred {
       override val interval: Float = 1f
     }
-    units = Seq(control, view, ai)
+
+    val aiControl = new AIControl(shared) with LocalDeferred
+    units = Seq(control, view, ai, aiControl)
 
     time = 0f
     units.foreach(_.onActivate())

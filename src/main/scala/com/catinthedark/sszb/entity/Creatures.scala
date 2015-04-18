@@ -17,8 +17,21 @@ object Creatures {
   }
 }
 
-sealed abstract class Creature
+sealed trait Creature {
+  var roadNumber: Int
+  var x: Int
+  var speed: Int
+}
 
-case class Whore(roadNumber: Int, x: Int, health: Int = Const.Difficulty.whoreHealth) extends Creature
+case class Whore( var roadNumber: Int,
+                  var x: Int,
+                  var health: Int = Const.Difficulty.whoreHealth,
+                  var speed: Int = Const.Difficulty.whoreSpeed)
+  extends Creature
 
-case class Hooligan(roadNumber: Int, x: Int, health: Int = Const.Difficulty.hooliganHealth) extends Creature
+case class Hooligan( var roadNumber: Int,
+                     var x: Int,
+                     var health: Int = Const.Difficulty.hooliganHealth,
+                     var speed: Int = Const.Difficulty.hooliganSpeed,
+                     var cooldown: Boolean = true)
+  extends Creature
