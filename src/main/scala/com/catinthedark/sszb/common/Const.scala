@@ -17,6 +17,7 @@ object Const {
     val rowFistX = 160f
 
     val hudPos = new Vector2(961, 699)
+    val moneyPos = new Vector2(1150, 655)
   }
 
   object Difficulty {

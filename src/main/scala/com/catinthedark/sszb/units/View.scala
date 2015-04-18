@@ -32,7 +32,10 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         self.draw(Assets.Textures.hudBack, UI.hudPos.x, UI.hudPos.y)
         self.draw(Assets.Textures.hud, UI.hudPos.x, UI.hudPos.y, 80 * shared.hits, 64, 0, 0, 80 * shared.hits, 64, false, false)
         self.draw(Assets.Textures.hudFront, UI.hudPos.x, UI.hudPos.y)
+        Assets.Fonts.moneyBackFont.draw(self, "$: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
+        Assets.Fonts.moneyFrontFont.draw(self, "$: " + s"${shared.money}", UI.moneyPos.x + 3, UI.moneyPos.y + 3)
       }
+
     }
 
     def dispose() = {
