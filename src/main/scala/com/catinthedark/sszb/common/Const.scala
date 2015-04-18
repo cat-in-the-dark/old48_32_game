@@ -1,6 +1,7 @@
 package com.catinthedark.sszb.common
 
 import com.badlogic.gdx.math.{Rectangle, Vector2}
+import com.catinthedark.sszb.entity.{Whore, Hooligan, Creature}
 
 /**
  * Created by over on 03.01.15.
@@ -21,6 +22,9 @@ object Const {
   }
 
   object Difficulty {
+    val hooliganHealth: Int = 1
+    val whoreHealth: Int = 1
+
     val startMoney: Int = 100000
     val grateMul = 80
     val repairMul = 50
@@ -58,6 +62,8 @@ object Const {
           else (false, false)
         })
       )
+
+    val creatures = Array(classOf[Hooligan], classOf[Whore])
   }
 
 
