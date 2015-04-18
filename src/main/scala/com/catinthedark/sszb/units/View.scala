@@ -47,7 +47,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     val wndBatch = new SpriteBatch
     wndBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
     val creaturesBatch = new SpriteBatch
-    wndBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
+    creaturesBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
 
     override def render(delta: Float): Unit = {
       val (x, y) = currentRoom
