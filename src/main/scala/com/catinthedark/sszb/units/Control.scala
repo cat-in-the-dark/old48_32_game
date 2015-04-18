@@ -12,7 +12,8 @@ import com.catinthedark.sszb.lib._
  */
 abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
 
-  var onMoved = new Pipe[(Int, Int)]
+  val onMoved = new Pipe[(Int, Int)]
+  val onManualDay = new Pipe[Unit]
   var currentRoom = Const.Difficulty.firstRoom
   def canUseRoom(x: Int, y: Int): Boolean = shared.rooms(x)(y).bought && !shared.rooms(x)(y).broken
 
@@ -29,6 +30,8 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
         keycode match {
           case Input.Keys.P =>
             shared.hits += 1
+          case Input.Keys.ESCAPE =>
+            onManualDay()
           case _ =>
         }
 
