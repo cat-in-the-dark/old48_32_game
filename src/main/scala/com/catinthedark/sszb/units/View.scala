@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.entity.{PotRoom, TVRoom, RoyalRoom}
 import com.catinthedark.sszb.{Shared, Assets}
+import com.catinthedark.sszb.Assets.Textures
 import com.catinthedark.sszb.common.Const.UI
 import com.catinthedark.sszb.lib.Magic._
 import com.catinthedark.sszb.lib._
@@ -37,10 +38,18 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
   val gameLayer = new Layer {
 
     val bgBatch = new SpriteBatch
+    val wndBatch = new SpriteBatch
 
     override def render(delta: Float): Unit = {
       bgBatch.managed { self =>
         self.draw(Assets.Textures.bg, 0, 0)
+      }
+      wndBatch.managed { self =>
+        for (i <- 0 to shared.rooms.length - 1;
+             j <- 0 to shared.rooms(0).length - 1) {
+          val room = shared.rooms(i)(j)
+          self.draw(Textures.wndDayNormal, j * 128 + 128, i * 128 + 256)
+        }
       }
     }
   }

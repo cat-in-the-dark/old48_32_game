@@ -23,6 +23,7 @@ object Assets {
     val hudFront = new Texture(Gdx.files.internal("textures/hud_front.png"))
     val bg = new Texture(Gdx.files.internal("textures/bg.gif"))
     val frame = new Texture(Gdx.files.internal("textures/frame.png"))
+    val wndDayNormal = new Texture(Gdx.files.internal("textures/window_normal_day.gif"))
   }
 
 }
