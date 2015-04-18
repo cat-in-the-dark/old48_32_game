@@ -18,6 +18,38 @@ object Const {
     val screenPos = new Vector2(320, 65)
   }
 
+  object Difficulty {
+    val seedDivider = 10
+    /**
+     * seed in range [0,9]
+     */
+    val spawnRand: Map[Int, Function[Int, (Boolean, Boolean)]] =
+      Map(
+        1 -> ((seed: Int) => if (seed == 0) (true, false) else (false, false)),
+        2 -> ((seed: Int) => {
+          if ((0 to 1).contains(seed)) (false, true)
+          else if ((1 to 2).contains(seed)) (true, false)
+          else (false, false)
+        }),
+        3 -> ((seed: Int) => {
+          if ((0 to 2).contains(seed)) (false, true)
+          else if ((2 to 4).contains(seed)) (true, false)
+          else (false, false)
+        }),
+        4 -> ((seed: Int) => {
+          if ((0 to 3).contains(seed)) (true, true)
+          else if ((3 to 6).contains(seed)) (true, false)
+          else (false, false)
+        }),
+        5 -> ((seed: Int) => {
+          if ((0 to 4).contains(seed)) (true, true)
+          else if ((4 to 8).contains(seed)) (false, false)
+          else (false, false)
+        })
+      )
+  }
+
+
   object Physics {
     val blockSize = new Vector2(1f, 1f)
   }

@@ -3,9 +3,10 @@ package com.catinthedark.sszb
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.{Game, Gdx, Input}
 import com.catinthedark.sszb.common.Const
-import com.catinthedark.sszb.entity.{RoyalRoom, TVRoom, PotRoom, Room}
+import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.lib._
 
+import scala.collection.mutable
 import scala.util.Random
 
 /**
@@ -54,7 +55,7 @@ class SaveMeDadUltra extends Game {
     val t3 = keyAwait("Tutorial3", Assets.Textures.t3)
     val t4 = keyAwait("Tutorial4", Assets.Textures.t4)
 
-    val shared: Shared = new Shared(createHouse())
+    val shared: Shared = new Shared(createHouse(), mutable.ListBuffer(), 1)
     val night = new NightState(shared)
     val day = new DayState(shared)
 
