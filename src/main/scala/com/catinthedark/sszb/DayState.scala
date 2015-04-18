@@ -70,7 +70,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     }
 
   def canUseRoom(x: Int, y: Int): Boolean =
-    shared.rooms(x)(y).bought || query(x+1, y) || query(x-1, y) || query(x, y+1) || query(x, y-1)
+    shared.rooms(x)(y).bought || query(x + 1, y) || query(x - 1, y) || query(x, y + 1) || query(x, y - 1)
 
   override def toString = "Day"
 
@@ -112,8 +112,14 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
       self.draw(Textures.bg, 0, 0)
       for (i <- 0 to shared.rooms.length - 1;
            j <- 0 to shared.rooms(0).length - 1) {
+
         val room = shared.rooms(i)(j)
-        self.draw(Textures.wndDayNormal, j * 128 + 128, i * 128 + 256)
+        val tex = if (room.broken) Textures.wndDayBroken
+        else if (room.grate) Textures.wndDayGrate
+        else if (room.bought) Textures.wndDayNormal
+        else Textures.wndDayNotBought
+
+        self.draw(tex, j * 128 + 128, i * 128 + 256)
       }
       val (x, y) = currentRoom
       self.draw(Textures.frame, y * 128 + 128, x * 128 + 256)
