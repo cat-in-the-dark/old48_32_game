@@ -22,6 +22,9 @@ object Const {
   }
 
   object Difficulty {
+    val potRoomCooldown = 1f
+    val tvRoomCooldown = 2f
+    val royalRoomCooldown = 3f
     val whoreSpeed = 2
     val hooliganSpeed = 1
 

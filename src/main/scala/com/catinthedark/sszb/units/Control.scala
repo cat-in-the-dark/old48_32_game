@@ -19,6 +19,8 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
 
   def shootFrom(room: Room) = {
     println("BUM")
+    room.cooldown = false
+    defer(room.cooldownTime, () => room.cooldown = true)
   }
 
   override def onActivate(): Unit = {

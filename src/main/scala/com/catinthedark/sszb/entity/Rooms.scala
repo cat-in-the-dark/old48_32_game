@@ -12,6 +12,7 @@ sealed trait Room {
   var armed: Boolean
   var cooldown: Boolean
   val basePrice: Int
+  def cooldownTime: Float
 
   def repairPrice: Int = basePrice * Const.Difficulty.repairMul
   def buyPrice: Int = basePrice * Const.Difficulty.buyMul
@@ -22,14 +23,17 @@ sealed trait Room {
 case class RoyalRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean, var armed: Boolean, var cooldown: Boolean, basePrice: Int)
   extends Room {
   override def weaponPrice = basePrice * Const.Difficulty.royalMul
+  override def cooldownTime: Float = Const.Difficulty.royalRoomCooldown
 }
 
 case class PotRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean, var armed: Boolean, var cooldown: Boolean, basePrice: Int)
   extends Room {
   override def weaponPrice = basePrice * Const.Difficulty.potMul
+  override def cooldownTime: Float = Const.Difficulty.potRoomCooldown
 }
 
 case class TVRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean, var armed: Boolean, var cooldown: Boolean, basePrice: Int)
   extends Room {
   override def weaponPrice = basePrice * Const.Difficulty.tvMul
+  override def cooldownTime: Float = Const.Difficulty.tvRoomCooldown
 }

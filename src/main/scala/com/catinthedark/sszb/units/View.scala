@@ -46,13 +46,16 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     bgBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
     val wndBatch = new SpriteBatch
     wndBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
+    val creaturesBatch = new SpriteBatch
+    wndBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
 
     override def render(delta: Float): Unit = {
+      val (x, y) = currentRoom
+
       bgBatch.managed { self =>
         self.draw(Assets.Textures.bg, 0, 0)
         println(s"croom: $currentRoom")
-        val (x, y) = currentRoom
-        if (shared.rooms(x)(y).cooldown) {
+        if (!shared.rooms(x)(y).cooldown) {
           self.draw(Textures.babkaInWnd, y * 128 + 128, x * 128 + 256)
         }
       }
@@ -65,6 +68,11 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
           else if (room.bought) Textures.wndNightNormal
           else Textures.wndNightNotBought
           self.draw(tex, j * 128 + 128, i * 128 + 256)
+        }
+      }
+      creaturesBatch.managed{ self =>
+        if (shared.rooms(x)(y).cooldown) {
+          self.draw(Textures.babkaInWnd, y * 128 + 128, x * 128 + 256)
         }
       }
     }
