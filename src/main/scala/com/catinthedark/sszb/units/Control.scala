@@ -4,7 +4,8 @@ package com.catinthedark.sszb.units
 import com.badlogic.gdx.{Gdx, Input, InputAdapter}
 import com.catinthedark.sszb.Shared
 import com.catinthedark.sszb.common.Const
-import com.catinthedark.sszb.entity.Room
+import com.catinthedark.sszb.common.Const.Difficulty
+import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.lib._
 
 /**
@@ -19,6 +20,15 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
 
   def shootFrom(room: Room) = {
     println("BUM")
+    val (x, y) = currentRoom
+    shared.weights += (room match {
+      case _: PotRoom =>
+        Pot(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
+      case _: TVRoom =>
+        TV(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
+      case _: RoyalRoom =>
+        Royal(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
+    })
     room.cooldown = false
     defer(room.cooldownTime, () => room.cooldown = true)
   }

@@ -24,4 +24,3 @@ case class Royal(var x: Int,
                var y: Int,
                var speed: Int)
   extends Weight
-

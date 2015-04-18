@@ -43,6 +43,10 @@ object Assets {
       new Texture(Gdx.files.internal("textures/whore.png")), 92, 128)
     val hooliganAttackFrames = TextureRegion.split(
       new Texture(Gdx.files.internal("textures/hooligan.png")), 120, 128)
+
+    val tv = new Texture(Gdx.files.internal("textures/tv.png"))
+    val royal = new Texture(Gdx.files.internal("textures/royal.png"))
+    val pot = new Texture(Gdx.files.internal("textures/pot.png"))
   }
 
   object Fonts {

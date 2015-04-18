@@ -41,6 +41,7 @@ object Const {
     val tvMul = 2
     val potMul = 1
     val firstRoom = (1, 2)
+    val weightSpeed = 5
 
     val seedDivider = 10
     /**
