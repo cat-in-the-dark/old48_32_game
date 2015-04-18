@@ -20,6 +20,7 @@ object Assets {
     val fistLeft = new Texture(Gdx.files.internal("textures/fist_left.png"))
     val hudBack = new Texture(Gdx.files.internal("textures/hud_back.png"))
     val hudFront = new Texture(Gdx.files.internal("textures/hud_front.png"))
+    val bg = new Texture(Gdx.files.internal("textures/bg.gif"))
   }
 
 }

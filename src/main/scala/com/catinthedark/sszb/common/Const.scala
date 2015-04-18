@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.{Rectangle, Vector2}
 object Const {
 
   object UI {
+    val screenSize = new Vector2(1366, 768)
     var COOLDOWN_INDICATOR_COL = new Vector2(1185, 510)
     var COOLDOWN_INDICATOR_ROW = new Vector2(1185, 390)
     val gameRect = new Rectangle(345, 185, 750, 520)
@@ -15,7 +16,7 @@ object Const {
     val colFistY = 770f
     val rowFistX = 160f
 
-    val hudPos = new Vector2(920, 620)
+    val hudPos = new Vector2(961, 699)
   }
 
   object Difficulty {

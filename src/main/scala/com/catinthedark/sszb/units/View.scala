@@ -38,6 +38,17 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     }
   }
 
+  val gameLayer = new Layer {
+
+    val bgBatch = new SpriteBatch
+
+    override def render(delta: Float): Unit = {
+      bgBatch.managed { self =>
+        self.draw(Assets.Textures.bg, 0, 0)
+      }
+    }
+  }
+
 
   override def onActivate(): Unit = {}
 
@@ -47,6 +58,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     Gdx.gl.glClearColor(0, 0, 0, 0)
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
 
+    gameLayer.render(delta)
     hudLayer.render(delta)
   }
 }
