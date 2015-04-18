@@ -1,9 +1,11 @@
 package com.catinthedark.sszb
 
-import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.{utils, Gdx}
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.{Animation, TextureRegion}
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
+import com.catinthedark.sszb.common.Const
 
 /**
  * Created by over on 13.12.14.
@@ -37,7 +39,10 @@ object Assets {
     val wndNightNotBought = new Texture(Gdx.files.internal("textures/window_night_disabled.gif"))
 
     val babkaInWnd = new Texture(Gdx.files.internal("textures/babka_in_window.gif"))
-
+    val whoreFrames = TextureRegion.split(
+      new Texture(Gdx.files.internal("textures/whore.png")), 92, 128)
+    val hooliganAttackFrames = TextureRegion.split(
+      new Texture(Gdx.files.internal("textures/hooligan.png")), 120, 128)
   }
 
   object Fonts {
@@ -48,6 +53,25 @@ object Assets {
     moneyBackFont.setColor(25f / 255, 60f / 255, 40f / 255, 1)
     var moneyFrontFont = mainGenerator.generateFont(moneyFontParam)
     moneyFrontFont.setColor(54f / 255, 131f / 255, 87f / 255, 1)
+  }
+
+  object Animations {
+    private def loopingAnimation(frames: Array[Array[TextureRegion]], frameIndexes: (Int, Int)*): Animation = {
+      val array = new utils.Array[TextureRegion]
+      frameIndexes.foreach(i => array.add(frames(i._1)(i._2)))
+      new Animation(Const.UI.animationSpeed, array, Animation.PlayMode.LOOP)
+    }
+
+    private def normalAnimation(frames: Array[Array[TextureRegion]], frameIndexes: (Int, Int)*): Animation = {
+      val array = new utils.Array[TextureRegion]
+      frameIndexes.foreach(i => array.add(frames(i._1)(i._2)))
+      new Animation(Const.UI.animationSpeed, array, Animation.PlayMode.NORMAL)
+    }
+
+    val lady = loopingAnimation(Textures.whoreFrames,
+      (0,0), (0,1), (0,2), (0,3))
+    val gopnikAttack = normalAnimation(Textures.hooliganAttackFrames,
+      (0,0), (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9))
   }
 
 }
