@@ -1,11 +1,7 @@
 package com.catinthedark.savemedad.units
 
 
-import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.{Gdx, Input, InputAdapter}
-import com.catinthedark.savemedad.common.Attacks
-import com.catinthedark.savemedad.common.Attacks.Attacks
-import com.catinthedark.savemedad.common.Const.Timing._
 import com.catinthedark.savemedad.lib._
 
 /**
