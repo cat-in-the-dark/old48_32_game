@@ -44,6 +44,7 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
 
   override def onExit(): Unit = {
     cheatSkip = false
+    shared.creatures.clear()
     units.foreach(_.onExit())
   }
 

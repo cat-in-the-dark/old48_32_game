@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.catinthedark.sszb.common.Const
 import com.badlogic.gdx.math.Matrix4
-import com.catinthedark.sszb.entity.{PotRoom, TVRoom, RoyalRoom}
+import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.{Shared, Assets}
-import com.catinthedark.sszb.Assets.Textures
+import com.catinthedark.sszb.Assets.{Animations, Textures}
 import com.catinthedark.sszb.common.Const.UI
 import com.catinthedark.sszb.lib.Magic._
 import com.catinthedark.sszb.lib._
@@ -48,13 +48,15 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     wndBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
     val creaturesBatch = new SpriteBatch
     creaturesBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
+    wndBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
+    var time = 0f
 
     override def render(delta: Float): Unit = {
       val (x, y) = currentRoom
+      time += delta
 
       bgBatch.managed { self =>
         self.draw(Assets.Textures.bg, 0, 0)
-        println(s"croom: $currentRoom")
         if (!shared.rooms(x)(y).cooldown) {
           self.draw(Textures.babkaInWnd, y * 128 + 128, x * 128 + 256)
         }
@@ -74,6 +76,13 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         if (shared.rooms(x)(y).cooldown) {
           self.draw(Textures.babkaInWnd, y * 128 + 128, x * 128 + 256)
         }
+        shared.creatures.foreach({
+          case w @ Whore(_,_,_,_) =>
+            self.draw(Animations.whore.getKeyFrame(time), w.x, w.roadNumber * 128)
+          case h @ Hooligan(_,_,_,_,_) =>
+            self.draw(Animations.hooliganAttack.getKeyFrame(time), h.x, h.roadNumber * 128)
+          case _ =>
+        })
       }
     }
     def dispose() = {

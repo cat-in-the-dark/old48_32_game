@@ -68,9 +68,9 @@ object Assets {
       new Animation(Const.UI.animationSpeed, array, Animation.PlayMode.NORMAL)
     }
 
-    val lady = loopingAnimation(Textures.whoreFrames,
+    val whore = loopingAnimation(Textures.whoreFrames,
       (0,0), (0,1), (0,2), (0,3))
-    val gopnikAttack = normalAnimation(Textures.hooliganAttackFrames,
+    val hooliganAttack = loopingAnimation(Textures.hooliganAttackFrames,
       (0,0), (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9))
   }
 
