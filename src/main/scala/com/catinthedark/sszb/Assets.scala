@@ -25,10 +25,16 @@ object Assets {
     val hudFront = new Texture(Gdx.files.internal("textures/hud_front.png"))
     val bg = new Texture(Gdx.files.internal("textures/bg.gif"))
     val frame = new Texture(Gdx.files.internal("textures/frame.png"))
+
     val wndDayNotBought = new Texture(Gdx.files.internal("textures/window_day_disabled.gif"))
     val wndDayNormal = new Texture(Gdx.files.internal("textures/window_normal_day.gif"))
     val wndDayGrate = new Texture(Gdx.files.internal("textures/window_grid_date.gif"))
     val wndDayBroken = new Texture(Gdx.files.internal("textures/window_broken_day.gif"))
+
+    val wndNightBroken = new Texture(Gdx.files.internal("textures/window_broken_night.gif"))
+    val wndNightNormal = new Texture(Gdx.files.internal("textures/window_normal_night.gif"))
+    val wndNightGate = new Texture(Gdx.files.internal("textures/window_grid_night.gif"))
+    val wndNightNotBought = new Texture(Gdx.files.internal("textures/window_night_disabled.gif"))
 
   }
 

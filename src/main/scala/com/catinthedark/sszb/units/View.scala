@@ -58,7 +58,11 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         for (i <- 0 to shared.rooms.length - 1;
              j <- 0 to shared.rooms(0).length - 1) {
           val room = shared.rooms(i)(j)
-          self.draw(Textures.wndDayNormal, j * 128 + 128, i * 128 + 256)
+          val tex = if (room.broken) Textures.wndNightBroken
+          else if (room.grate) Textures.wndNightGate
+          else if (room.bought) Textures.wndNightNormal
+          else Textures.wndNightNotBought
+          self.draw(tex, j * 128 + 128, i * 128 + 256)
         }
       }
     }
