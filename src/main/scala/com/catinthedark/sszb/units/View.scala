@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.catinthedark.sszb.common.Const
+import com.badlogic.gdx.math.Matrix4
 import com.catinthedark.sszb.entity.{PotRoom, TVRoom, RoyalRoom}
 import com.catinthedark.sszb.{Shared, Assets}
 import com.catinthedark.sszb.Assets.Textures
@@ -24,7 +25,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
   val hudLayer = new Layer {
 
     val hudBatch = new SpriteBatch
-    val shapeRenderer = new ShapeRenderer
+    hudBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
 
     override def render(delta: Float): Unit = {
       hudBatch.managed { self =>
@@ -33,12 +34,18 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         self.draw(Assets.Textures.hudFront, UI.hudPos.x, UI.hudPos.y)
       }
     }
+
+    def dispose() = {
+      hudBatch.dispose()
+    }
   }
 
   val gameLayer = new Layer {
 
     val bgBatch = new SpriteBatch
+    bgBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
     val wndBatch = new SpriteBatch
+    wndBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
 
     override def render(delta: Float): Unit = {
       bgBatch.managed { self =>
@@ -52,12 +59,19 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         }
       }
     }
+    def dispose() = {
+      bgBatch.dispose()
+      wndBatch.dispose()
+    }
   }
 
 
   override def onActivate(): Unit = {}
 
-  override def onExit(): Unit = {}
+  override def onExit(): Unit = {
+    gameLayer.dispose()
+    hudLayer.dispose()
+  }
 
   override def run(delta: Float) = {
     Gdx.gl.glClearColor(0, 0, 0, 0)
