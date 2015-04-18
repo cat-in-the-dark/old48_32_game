@@ -2,6 +2,7 @@ package com.catinthedark.sszb
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.{InputAdapter, Input, Gdx}
+import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.entity.Room
 import com.catinthedark.sszb.lib.YieldUnit
 import com.catinthedark.sszb.lib.Magic._
@@ -11,7 +12,7 @@ import Assets.Textures
  * Created by over on 18.04.15.
  */
 class DayState(shared: Shared) extends YieldUnit[Boolean] {
-  var currentRoom = (0, 0)
+  var currentRoom = Const.Difficulty.firstRoom
 
   def repair(room: Room) = {
     if (shared.money >= room.repairPrice) {
@@ -61,6 +62,16 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     }
   }
 
+  def query(i: Int, j: Int): Boolean =
+    try {
+      shared.rooms(i)(j).bought
+    } catch {
+      case e: ArrayIndexOutOfBoundsException => false
+    }
+
+  def canUseRoom(x: Int, y: Int): Boolean =
+    shared.rooms(x)(y).bought || query(x+1, y) || query(x-1, y) || query(x, y+1) || query(x, y-1)
+
   override def toString = "Day"
 
   override def onActivate(): Unit = {
@@ -69,10 +80,10 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
         val (x, y) = currentRoom
         val rooms = shared.rooms
         currentRoom = keycode match {
-          case Input.Keys.UP if x > 0 => (x - 1, y)
-          case Input.Keys.DOWN if x < rooms.length - 1 => (x + 1, y)
-          case Input.Keys.RIGHT if y < rooms(0).length - 1 => (x, y + 1)
-          case Input.Keys.LEFT if y > 0 => (x, y - 1)
+          case Input.Keys.UP if x > 0 && canUseRoom(x - 1, y) => (x - 1, y)
+          case Input.Keys.DOWN if x < rooms.length - 1 && canUseRoom(x + 1, y) => (x + 1, y)
+          case Input.Keys.RIGHT if y < rooms(0).length - 1 && canUseRoom(x, y + 1) => (x, y + 1)
+          case Input.Keys.LEFT if y > 0 && canUseRoom(x, y - 1) => (x, y - 1)
           case _ => (x, y)
         }
 
