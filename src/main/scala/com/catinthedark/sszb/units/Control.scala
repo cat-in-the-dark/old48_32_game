@@ -15,6 +15,7 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
 
   val onMoved = new Pipe[(Int, Int)]
   val onManualDay = new Pipe[Unit]
+  val onGameReload = new Pipe[Unit]
   def canUseRoom(x: Int, y: Int): Boolean = shared.rooms(x)(y).bought && !shared.rooms(x)(y).broken
 
   def shootFrom(room: Room) = {
@@ -22,11 +23,11 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
       val (x, y) = shared.currentRoom
       shared.weights += (room match {
         case _: PotRoom =>
-        Pot(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
+          Pot(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
         case _: TVRoom =>
-        TV(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
+          TV(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
         case _: RoyalRoom =>
-        Royal(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
+          Royal(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
       })
       room.cooldown = false
       defer(room.cooldownTime, () => room.cooldown = true)
@@ -43,6 +44,8 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
           case Input.Keys.P =>
             shared.hits += 1
           case Input.Keys.ESCAPE =>
+            onGameReload()
+          case Input.Keys.L =>
             onManualDay()
           case _ =>
         }
