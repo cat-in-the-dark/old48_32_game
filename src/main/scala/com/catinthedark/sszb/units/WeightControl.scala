@@ -2,7 +2,7 @@ package com.catinthedark.sszb.units
 
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const.UI
-import com.catinthedark.sszb.entity.{Creature, Royal, TV, Pot}
+import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.lib.SimpleUnit
 
 import scala.collection.mutable.ListBuffer
@@ -51,7 +51,16 @@ class WeightControl(shared: Shared) extends SimpleUnit {
 
       if (weight.y < UI.hitL1Level) {
         shared.creatures --= shared.creatures.filter { creature: Creature =>
-          ((weight.x - weightWidth / 2) < creature.x) && (creature.x < (weight.x + weightWidth / 2))
+           if (((weight.x - weightWidth / 2) < creature.x) && (creature.x < (weight.x + weightWidth / 2))) {
+             creature match {
+               case h: Hooligan =>
+                 shared.animations += new AnimationWrapper(Assets.Animations.hooliganDia, h.x, h.roadNumber * 128)
+               case w: Whore =>
+                 shared.animations += new AnimationWrapper(Assets.Animations.whoreDie, w.x, w.roadNumber * 128)
+               case _ =>
+             }
+             true
+           } else false
         }
       }
       weight.y -= weight.speed * delta

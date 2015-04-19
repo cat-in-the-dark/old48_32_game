@@ -81,9 +81,10 @@ object Assets {
     val whore = loopingAnimation(Textures.whoreFrames,
       (0, 0), (0, 1), (0, 2), (0, 3))
     val hooliganAttack = normalAnimation(Textures.hooliganAttackFrames,
-      (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8), (0, 9))
-    val hooligan = loopingAnimation(Textures.hooliganAttackFrames, (0, 0), (0, 1))
-
+      (0,0), (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9))
+    val hooligan = loopingAnimation(Textures.hooliganAttackFrames, (0,0), (0,1))
+    val hooliganDia = normalAnimation(Textures.hooliganAttackFrames, (0,8), (0,9), (0,8), (0,9))
+    val whoreDie = normalAnimation(Textures.whoreFrames, (0, 1), (0, 3))
   }
 
   object Audios {

@@ -97,6 +97,13 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
             h.stateTime += delta
           case _ =>
         })
+        shared.animations.foreach({ a =>
+          self.draw(a.animation.getKeyFrame(a.stateTime), a.x, a.y)
+          defer(a.animation.getAnimationDuration, () => {
+            shared.animations -= a
+          })
+          a.stateTime += delta
+        })
       }
       weightsBatch.managed { self =>
         shared.weights.foreach {
