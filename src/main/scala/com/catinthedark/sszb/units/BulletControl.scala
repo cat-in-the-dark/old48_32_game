@@ -1,7 +1,7 @@
 package com.catinthedark.sszb.units
 
 import com.badlogic.gdx.math.MathUtils
-import com.catinthedark.sszb.Shared
+import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.Bullet
 import com.catinthedark.sszb.lib.SimpleUnit
@@ -32,6 +32,7 @@ class BulletControl(shared: Shared) extends SimpleUnit {
           true
         } else {
           bullet.targetRoom.broken = true
+          Assets.Audios.wndDestroy.play()
           true
         }
       } else {
