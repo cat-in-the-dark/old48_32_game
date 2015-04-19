@@ -54,6 +54,8 @@ object Assets {
       new Texture(Gdx.files.internal("textures/piano_crash_animation.gif")), 200, 128)
     val tvCrash = TextureRegion.split(
       new Texture(Gdx.files.internal("textures/tv_crash_animation.gif")), 160, 96)
+    val potCrash = TextureRegion.split(
+      new Texture(Gdx.files.internal("textures/pot_crash_animation.gif")), 80 ,104)
 
     val tv = new Texture(Gdx.files.internal("textures/tv.gif"))
     val royal = new Texture(Gdx.files.internal("textures/royal.gif"))
@@ -119,6 +121,7 @@ object Assets {
     val whoreDie = normalAnimation(Const.UI.animationSpeed, Textures.whoreFrames, (0, 1), (0, 3))
     val tvCrash = normalAnimation(Const.UI.animationFastSpeed, Textures.tvCrash, (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5))
     val royalCrash = normalAnimation(Const.UI.animationFastSpeed, Textures.royalCrash, (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5))
+    val potCrash = normalAnimation(Const.UI.animationFastSpeed, Textures.potCrash, (0,0), (0,1), (0,2), (0,3))
     val club = loopingAnimation(Textures.clublightFrames,
       (0, 0), (0, 1))
     club.setFrameDuration(0.6f)

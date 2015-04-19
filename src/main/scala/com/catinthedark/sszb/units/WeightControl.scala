@@ -27,8 +27,9 @@ class WeightControl(shared: Shared) extends SimpleUnit {
     shared.weights --= shared.weights.filter { w =>
       if (w.y < UI.groundLevel) {
         w match {
-          case _: Pot =>
+          case p: Pot =>
             Assets.Audios.potDestroy.play()
+            shared.animations += new AnimationWrapper(Assets.Animations.potCrash, p.x - 8, p.y)
           case t: TV =>
             Assets.Audios.tvDestroy.play()
             shared.animations += new AnimationWrapper(Assets.Animations.tvCrash, t.x - 34, t.y)
@@ -93,9 +94,11 @@ class WeightControl(shared: Shared) extends SimpleUnit {
             || ((wx1 >= cx1) && ((wx2 <= cx1) || (wx2 <= cx2)))) {
             creature match {
               case h: Hooligan =>
-                killHooligan(h.x, h.roadNumber * 128)
+                val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+                killHooligan(h.x, y)
               case w: Whore =>
-                killWhore(w.x, w.roadNumber * 128)
+                val y = if (w.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+                killWhore(w.x, y)
               case _ =>
             }
             true
