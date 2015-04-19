@@ -43,7 +43,7 @@ class SaveSoulOfZlayaBabka extends Game {
       mutable.ListBuffer(),
       mutable.ListBuffer(),
       mutable.ListBuffer(),
-      5, 0, 0,
+      1, 0, 0,
       Const.Difficulty.startMoney
     )
 
