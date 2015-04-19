@@ -71,8 +71,8 @@ object Const {
     val hooliganHealth = 1
     val whoreHealth = 1
 
-    val whorePrice = 4
-    val hooliganPrice = 5
+    val whorePrice = 8
+    val hooliganPrice = 10
 
     val clubBase = 20
     val cheapRoom = 1
