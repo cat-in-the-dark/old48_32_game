@@ -23,6 +23,12 @@ object Const {
 
     val animationSpeed = 0.2f
 
+    val potWidth = 32f
+    val tvWidth = 64f
+    val royalwWidth = 92f
+
+    val hitL0Level = 192f
+    val hitL1Level = 128f
     val groundLevel = 64f
   }
 
