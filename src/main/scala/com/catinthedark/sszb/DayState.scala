@@ -124,6 +124,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   def render(): Unit = {
     batch.managed { self =>
       self.draw(Textures.bg, 0, 0)
+      self.draw(Textures.clublightDay, Const.Physics.clubXPos, Const.Physics.clubYPos)
       for (i <- 0 to shared.rooms.length - 1;
            j <- 0 to shared.rooms(0).length - 1) {
 

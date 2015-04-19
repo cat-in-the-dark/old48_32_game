@@ -67,6 +67,8 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     }
   }
 
+  var clubKf = 0f
+
   val gameLayer = new Layer {
 
     val bgBatch = new SpriteBatch
@@ -80,11 +82,13 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     weaponsBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
 
     override def render(delta: Float): Unit = {
+      clubKf += delta
       val (x, y) = currentRoom
       time += delta
 
       bgBatch.managed { self =>
         self.draw(Assets.Textures.bg, 0, 0)
+        self.draw(Assets.Animations.club.getKeyFrame(clubKf), Const.Physics.clubXPos, Const.Physics.clubYPos)
         if (!shared.rooms(x)(y).cooldown) {
           self.draw(Textures.babkaInWnd, y * 128 + 128, x * 128 + 256)
         }

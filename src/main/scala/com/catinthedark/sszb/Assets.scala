@@ -73,6 +73,10 @@ object Assets {
     val lightOff = new Texture(Gdx.files.internal("textures/light_off.png"))
     val lightDay = new Texture(Gdx.files.internal("textures/light_day.png"))
 
+    val clublightFrames = TextureRegion.split(
+      new Texture(Gdx.files.internal("textures/club_night_1.gif")), 382, 484)
+    val clublightDay = new Texture(Gdx.files.internal("textures/club_day.gif"))
+
   }
 
   object Fonts {
@@ -109,12 +113,15 @@ object Assets {
     val whore = loopingAnimation(Textures.whoreFrames,
       (0, 0), (0, 1), (0, 2), (0, 3))
     val hooliganAttack = normalAnimation(Const.UI.animationSpeed, Textures.hooliganAttackFrames,
-      (0,0), (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9))
-    val hooligan = loopingAnimation(Textures.hooliganAttackFrames, (0,0), (0,1))
-    val hooliganDia = normalAnimation(Const.UI.animationSpeed, Textures.hooliganAttackFrames, (0,8), (0,9), (0,8), (0,9))
+      (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8), (0, 9))
+    val hooligan = loopingAnimation(Textures.hooliganAttackFrames, (0, 0), (0, 1))
+    val hooliganDia = normalAnimation(Const.UI.animationSpeed, Textures.hooliganAttackFrames, (0, 8), (0, 9), (0, 8), (0, 9))
     val whoreDie = normalAnimation(Const.UI.animationSpeed, Textures.whoreFrames, (0, 1), (0, 3))
-    val tvCrash = normalAnimation(Const.UI.animationFastSpeed, Textures.tvCrash, (0,0), (0,1), (0,2),(0,3),(0,4), (0,5))
-    val royalCrash = normalAnimation(Const.UI.animationFastSpeed, Textures.royalCrash, (0,0), (0,1), (0,2),(0,3),(0,4), (0,5))
+    val tvCrash = normalAnimation(Const.UI.animationFastSpeed, Textures.tvCrash, (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5))
+    val royalCrash = normalAnimation(Const.UI.animationFastSpeed, Textures.royalCrash, (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5))
+    val club = loopingAnimation(Textures.clublightFrames,
+      (0, 0), (0, 1))
+    club.setFrameDuration(0.6f)
   }
 
   object Audios {

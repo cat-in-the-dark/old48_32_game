@@ -86,7 +86,7 @@ object Const {
     /**
      * seed in range [0,9]
      */
-    def spawnRandom(lvl: Int, seed: Int):(Boolean, Boolean) = {
+    def spawnRandom(lvl: Int, seed: Int): (Boolean, Boolean) = {
       lvl match {
         case 1 => if (seed < 5) (true, false) else (false, true)
         case 2 =>
@@ -109,7 +109,7 @@ object Const {
       }
     }
 
-    def generatorTimer(lvl: Int): Float  = {
+    def generatorTimer(lvl: Int): Float = {
       lvl match {
         case 1 => 2.2f
         case 2 => 2f
@@ -125,7 +125,8 @@ object Const {
 
   object Physics {
     val blockSize = new Vector2(1f, 1f)
-    val clubXPos = 1100;
+    val clubXPos = 1100
+    val clubYPos = 100
   }
 
   object Timing {
