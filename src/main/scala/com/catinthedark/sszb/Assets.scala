@@ -39,20 +39,25 @@ object Assets {
     val wndNightNotBought = new Texture(Gdx.files.internal("textures/window_night_disabled.gif"))
 
     val babkaInWnd = new Texture(Gdx.files.internal("textures/babka_in_window.gif"))
+    val babkaHandsUp = new Texture(Gdx.files.internal("textures/babka_hands_up.gif"))
     val whoreFrames = TextureRegion.split(
       new Texture(Gdx.files.internal("textures/whore.png")), 92, 128)
     val hooliganAttackFrames = TextureRegion.split(
       new Texture(Gdx.files.internal("textures/hooligan.png")), 120, 128)
 
-    val tv = new Texture(Gdx.files.internal("textures/tv.png"))
-    val royal = new Texture(Gdx.files.internal("textures/royal.png"))
-    val pot = new Texture(Gdx.files.internal("textures/pot.png"))
+    val tv = new Texture(Gdx.files.internal("textures/tv.gif"))
+    val royal = new Texture(Gdx.files.internal("textures/royal.gif"))
+    val pot = new Texture(Gdx.files.internal("textures/pot.gif"))
 
     val shopBye = new Texture(Gdx.files.internal("textures/inrerface_buy.gif"))
     val shopRepair = new Texture(Gdx.files.internal("textures/inrerface_repair.gif"))
     val shopGrate = new Texture(Gdx.files.internal("textures/inrerface_grid.gif"))
     val shopWeapon = new Texture(Gdx.files.internal("textures/inrerface_weapon.gif"))
     val shopClub = new Texture(Gdx.files.internal("textures/interface_club.gif"))
+
+    val shopWeaponPot = new Texture(Gdx.files.internal("textures/inrerface_weapon_flower.gif"))
+    val shopWeaponTv = new Texture(Gdx.files.internal("textures/inrerface_weapon_tv.gif"))
+    val shopWeaponRoyal = new Texture(Gdx.files.internal("textures/inrerface_weapon_piano.gif"))
   }
 
   object Fonts {

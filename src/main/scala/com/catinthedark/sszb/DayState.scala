@@ -5,7 +5,7 @@ import com.badlogic.gdx.{InputAdapter, Input, Gdx}
 import com.catinthedark.sszb.Assets
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.common.Const.UI
-import com.catinthedark.sszb.entity.Room
+import com.catinthedark.sszb.entity.{RoyalRoom, TVRoom, PotRoom, Room}
 import com.catinthedark.sszb.lib.YieldUnit
 import com.catinthedark.sszb.lib.Magic._
 import Assets.Textures
@@ -167,7 +167,12 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
         font.draw(self, s"~${room.gratePrice}", 543, 70)
       }
       //Weapon
-      self.draw(Textures.shopWeapon, 686, 0)
+      val weaponTex = room match {
+        case _: PotRoom => Assets.Textures.shopWeaponPot
+        case _: TVRoom => Assets.Textures.shopWeaponTv
+        case _: RoyalRoom => Assets.Textures.shopWeaponRoyal
+      }
+      self.draw(weaponTex, 686, 0)
       if (!room.armed && !room.broken) {
         val font =
           if (shared.money >= room.weaponPrice)
