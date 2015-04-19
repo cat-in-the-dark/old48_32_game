@@ -63,6 +63,14 @@ object Assets {
     moneyBackFont.setColor(25f / 255, 60f / 255, 40f / 255, 1)
     var moneyFrontFont = mainGenerator.generateFont(moneyFontParam)
     moneyFrontFont.setColor(54f / 255, 131f / 255, 87f / 255, 1)
+
+    var otherFontParam = new FreeTypeFontParameter()
+    otherFontParam.size = 30
+
+    var greenFont = mainGenerator.generateFont(otherFontParam)
+    greenFont.setColor(54f / 255, 131f / 255, 87f / 255, 1)
+    var redFont = mainGenerator.generateFont(otherFontParam)
+    redFont.setColor(255f / 255, 0f / 255, 0f / 255, 1)
   }
 
   object Animations {

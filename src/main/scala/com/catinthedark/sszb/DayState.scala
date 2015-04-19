@@ -2,6 +2,7 @@ package com.catinthedark.sszb
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.{InputAdapter, Input, Gdx}
+import com.catinthedark.sszb.Assets
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.common.Const.UI
 import com.catinthedark.sszb.entity.Room
@@ -130,8 +131,59 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
         Assets.Fonts.moneyBackFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
         Assets.Fonts.moneyFrontFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x + 3, UI.moneyPos.y + 3)
       }
+      //Bye/Repair
       val (x, y) = currentRoom
       self.draw(Textures.frame, y * 128 + 128, x * 128 + 256)
+      val room = shared.rooms(x)(y)
+      if (!room.bought) {
+        self.draw(Textures.shopBye, 0, 0)
+        val font =
+          if (shared.money > room.buyPrice)
+            Assets.Fonts.greenFont
+          else
+            Assets.Fonts.redFont
+        font.draw(self, s"~${room.buyPrice}", 200, 70)
+      }
+      else {
+        self.draw(Textures.shopRepair, 0, 0)
+        if (room.broken) {
+          val font =
+            if (shared.money >= room.repairPrice)
+              Assets.Fonts.greenFont
+            else
+              Assets.Fonts.redFont
+          font.draw(self, s"~${room.repairPrice}", 200, 70)
+        }
+      }
+
+      //Grate
+      self.draw(Textures.shopGrate, 343, 0)
+      if (!room.grate && !room.broken) {
+        val font =
+          if (shared.money >= room.gratePrice)
+            Assets.Fonts.greenFont
+          else
+            Assets.Fonts.redFont
+        font.draw(self, s"~${room.gratePrice}", 543, 70)
+      }
+      //Weapon
+      self.draw(Textures.shopWeapon, 686, 0)
+      if (!room.armed && !room.broken) {
+        val font =
+          if (shared.money >= room.weaponPrice)
+            Assets.Fonts.greenFont
+          else
+            Assets.Fonts.redFont
+        font.draw(self, s"~${room.weaponPrice}", 886, 70)
+      }
+      //Club
+      self.draw(Textures.shopClub, 1029, 0)
+      val font =
+        if (shared.money >= Const.Difficulty.clubPrice)
+          Assets.Fonts.greenFont
+        else
+          Assets.Fonts.redFont
+      font.draw(self, s"~${Const.Difficulty.clubPrice}", 1229, 70)
     }
   }
 

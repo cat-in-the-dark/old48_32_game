@@ -29,6 +29,7 @@ object RenderFactory {
     rooms(x)(y).armed = true
     rooms(x + 1)(y).bought = true
     rooms(x + 1)(y).armed = true
+    rooms(x + 1)(y).broken = true
 
     rooms
   }

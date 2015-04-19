@@ -33,6 +33,7 @@ object Const {
   }
 
   object Difficulty {
+    val clubPrice = 600000
     val potRoomCooldown = 1f
     val tvRoomCooldown = 2f
     val royalRoomCooldown = 3f
