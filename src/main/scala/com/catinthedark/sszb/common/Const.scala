@@ -50,7 +50,7 @@ object Const {
     val whoreSpeed = 150
     val whoreCooldown = 5
 
-    val flashStartAlpha = 0.9f
+    val flashStartAlpha = 1f
     val flashSpeed = 0.3f
 
     val hooliganHealth = 1

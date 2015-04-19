@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.catinthedark.sszb.common.Const
-import com.badlogic.gdx.math.Matrix4
+import com.badlogic.gdx.math.{MathUtils, Matrix4}
 import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.{Shared, Assets}
 import com.catinthedark.sszb.Assets.{Animations, Textures}
@@ -27,7 +27,9 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     val hudBatch = new SpriteBatch
     hudBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
 
-    var flashAlpha = Difficulty.flashStartAlpha
+    var flashAlpha = 0f
+    var attackTime = 2.0f
+    var stateTime = 0.0f
 
     override def render(delta: Float): Unit = {
       hudBatch.managed { self =>
@@ -51,10 +53,11 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         shapeRenderer.rect(0, 0, 1366, 768)
         shapeRenderer.end()
         Gdx.gl.glDisable(GL20.GL_BLEND)
-        flashAlpha += -1 * Difficulty.flashSpeed * delta
-        if (flashAlpha <= 0) {
-          flashAlpha = Difficulty.flashStartAlpha
+        flashAlpha = MathUtils.cos(stateTime * (MathUtils.PI / 2) / attackTime)
+        stateTime += delta
+        if (stateTime >= attackTime) {
           makeSelfie = false
+          stateTime = 0
         }
       }
 
