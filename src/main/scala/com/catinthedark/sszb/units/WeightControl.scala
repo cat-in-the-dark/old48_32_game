@@ -66,7 +66,7 @@ class WeightControl(shared: Shared) extends SimpleUnit {
           val cx1 = creature.x
           val cx2 = creature.x + creature.width
           if ((((wx1 < cx1) && ((wx2 > cx1) || (wx2 > cx2)))
-            || ((wx1 >= cx1) && ((wx2 <= cx1) || (wx2 <= cx2))))
+            || ((wx1 >= cx1) && ((wx1 <= cx2) || (wx2 <= cx2))))
             && (creature.roadNumber == 1)) {
             creature match {
               case h: Hooligan =>
@@ -89,7 +89,7 @@ class WeightControl(shared: Shared) extends SimpleUnit {
           val cx1 = creature.x
           val cx2 = creature.x + creature.width
           if (((wx1 < cx1) && ((wx2 > cx1) || (wx2 > cx2)))
-            || ((wx1 >= cx1) && ((wx2 <= cx1) || (wx2 <= cx2)))) {
+            || ((wx1 >= cx1) && ((wx1 <= cx2) || (wx2 <= cx2)))) {
             creature match {
               case h: Hooligan =>
                 val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
