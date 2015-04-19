@@ -60,27 +60,25 @@ class WeightControl(shared: Shared) extends SimpleUnit {
       }
 
       if (weight.y < UI.hitL0Level) {
-        if (oneLevelHitTest) {
-          shared.creatures --= shared.creatures.filter { creature: Creature =>
-            val wx1 = weight.x
-            val wx2 = weight.x + weightWidth
-            val cx1 = creature.x
-            val cx2 = creature.x + creature.width
-            if ((((wx1 < cx1) && ((wx2 > cx1) || (wx2 > cx2)))
-              || ((wx1 >= cx1) && ((wx2 <= cx1) || (wx2 <= cx2))))
-              && (creature.roadNumber == 1)) {
-              creature match {
-                case h: Hooligan =>
-                  val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
-                  killHooligan(h.x, y)
-                case w: Whore =>
-                  val y = if (w.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
-                  killWhore(w.x, y)
-                case _ =>
-              }
-              true
-            } else false
-          }
+        shared.creatures --= shared.creatures.filter { creature: Creature =>
+          val wx1 = weight.x
+          val wx2 = weight.x + weightWidth
+          val cx1 = creature.x
+          val cx2 = creature.x + creature.width
+          if ((((wx1 < cx1) && ((wx2 > cx1) || (wx2 > cx2)))
+            || ((wx1 >= cx1) && ((wx2 <= cx1) || (wx2 <= cx2))))
+            && (creature.roadNumber == 1)) {
+            creature match {
+              case h: Hooligan =>
+                val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+                killHooligan(h.x, y)
+              case w: Whore =>
+                val y = if (w.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+                killWhore(w.x, y)
+              case _ =>
+            }
+            true
+          } else false
         }
       }
 
