@@ -1,6 +1,6 @@
 package com.catinthedark.sszb.units
 
-import com.catinthedark.sszb.Shared
+import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{Whore, Room, Bottle, Hooligan}
 import com.catinthedark.sszb.lib.{Pipe, Deferred, SimpleUnit}
@@ -42,7 +42,7 @@ abstract class AIControl(shared: Shared) extends SimpleUnit with Deferred {
       }
     }
 
-    if(targetRooms.length > 0) {
+    if (targetRooms.length > 0) {
       val random = new Random
       val targetRoom = targetRooms(random.nextInt(targetRooms.length))
       val targetRoomCenterX = targetRoom.x * 128 + 192
@@ -53,6 +53,10 @@ abstract class AIControl(shared: Shared) extends SimpleUnit with Deferred {
   }
 
   def selfie(w: Whore): Unit = {
-    onSelfie(true)
+    Assets.Audios.selfie.play()
+    //only first 2 affected
+    if (shared.currentRoom._1 != 2) {
+      onSelfie(true)
+    }
   }
 }
