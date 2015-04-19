@@ -21,9 +21,9 @@ object Const {
     val rowFistX = 160f
 
     val hudPos = new Vector2(961, 699)
-    val moneyPos = new Vector2(1150, 655)
-    val timePos = new Vector2(1150, 620)
-    val lvlPos = new Vector2(1150, 585)
+    val moneyPos = new Vector2(1150, 685)
+    val timePos = new Vector2(1150, 650)
+    val lvlPos = new Vector2(1150, 615)
 
     val animationFastSpeed = 0.1f
     val animationSpeed = 0.2f
