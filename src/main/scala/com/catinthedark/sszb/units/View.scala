@@ -31,7 +31,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         self.draw(Assets.Textures.hudFront, UI.hudPos.x, UI.hudPos.y)
         Assets.Fonts.moneyBackFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
         Assets.Fonts.moneyFrontFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x + 3, UI.moneyPos.y + 3)
-        Assets.Fonts.moneyFrontFont.draw(self, s"time:${Const.Timing.levelTime - shared.lvlTime}", UI.timePos.x + 3, UI.timePos.y + 3)
+        Assets.Fonts.moneyFrontFont.draw(self, s"time:${(Const.Timing.levelTime - shared.lvlTime).toLong}", UI.timePos.x + 3, UI.timePos.y + 3)
       }
 
     }

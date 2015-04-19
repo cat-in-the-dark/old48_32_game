@@ -49,6 +49,7 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     cheatSkip = false
     shared.creatures.clear()
     shared.weights.clear()
+    shared.animations.clear()
     shared.rooms.foreach { roomRow =>
       roomRow.foreach { room =>
         room.cooldown = true

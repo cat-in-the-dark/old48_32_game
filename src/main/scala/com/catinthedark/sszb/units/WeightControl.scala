@@ -1,16 +1,28 @@
 package com.catinthedark.sszb.units
 
+import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const.UI
 import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.lib.SimpleUnit
 
 import scala.collection.mutable.ListBuffer
+import scala.runtime.FloatRef
 
 /**
  * Created by kirill on 19.04.15.
  */
 class WeightControl(shared: Shared) extends SimpleUnit {
+  def killHooligan(x: Float, y: Float) = {
+    shared.animations += new AnimationWrapper(Assets.Animations.hooliganDia, x, y)
+    shared.money += Const.Difficulty.hooliganPrice
+  }
+
+  def killWhore(x: Float, y: Float) = {
+    shared.animations += new AnimationWrapper(Assets.Animations.whoreDie, x, y)
+    shared.money += Const.Difficulty.whorePrice
+  }
+
   override def run(delta: Float): Unit = {
     shared.weights --= shared.weights.filter { w =>
       if (w.y < UI.groundLevel) {
@@ -47,9 +59,9 @@ class WeightControl(shared: Shared) extends SimpleUnit {
             if (((weight.x - weightWidth / 2) < creature.x) && (creature.x < (weight.x + weightWidth / 2) && (creature.roadNumber == 1))) {
               creature match {
                 case h: Hooligan =>
-                  shared.animations += new AnimationWrapper(Assets.Animations.hooliganDia, h.x, h.roadNumber * 128)
+                  killHooligan(h.x, h.roadNumber * 128)
                 case w: Whore =>
-                  shared.animations += new AnimationWrapper(Assets.Animations.whoreDie, w.x, w.roadNumber * 128)
+                  killWhore(w.x, w.roadNumber * 128)
                 case _ =>
               }
               true
@@ -63,9 +75,9 @@ class WeightControl(shared: Shared) extends SimpleUnit {
            if (((weight.x - weightWidth / 2) < creature.x) && (creature.x < (weight.x + weightWidth / 2))) {
              creature match {
                case h: Hooligan =>
-                 shared.animations += new AnimationWrapper(Assets.Animations.hooliganDia, h.x, h.roadNumber * 128)
+                 killHooligan(h.x, h.roadNumber * 128)
                case w: Whore =>
-                 shared.animations += new AnimationWrapper(Assets.Animations.whoreDie, w.x, w.roadNumber * 128)
+                 killWhore(w.x, w.roadNumber * 128)
                case _ =>
              }
              true

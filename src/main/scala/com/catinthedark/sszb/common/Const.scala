@@ -33,7 +33,6 @@ object Const {
   }
 
   object Difficulty {
-    val clubPrice = 600000
     val potRoomCooldown = 1f
     val tvRoomCooldown = 2f
     val royalRoomCooldown = 3f
@@ -43,18 +42,28 @@ object Const {
     val hooliganHealth = 1
     val whoreHealth = 1
 
-    val startMoney = 100000
-    val grateMul = 80
-    val repairMul = 50
-    val buyMul = 100
-    val royalMul = 4
-    val tvMul = 2
-    val potMul = 1
+    val whorePrice = 3
+    val hooliganPrice = 4
+
+    val clubBase = 20
+    val cheapRoom = 1
+    val normalRoom = 2
+    val richRoom = 3
+
+    val grateMul = 15
+    val repairMul = 5
+    val buyMul = 10
+    val royalMul = 20
+    val tvMul = 10
+    val potMul = 5
+
+    val startMoney = cheapRoom * buyMul
     val firstRoom = (1, 2)
     val weightSpeed = 250
     val bottleSpeed = 250
-
     val seedDivider = 10
+
+    val clubPrice = clubBase * buyMul
     /**
      * seed in range [0,9]
      */

@@ -1,6 +1,6 @@
 package com.catinthedark.sszb.units
 
-import com.catinthedark.sszb.common.Const
+import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{RoyalRoom, TVRoom, PotRoom, Room}
 
 
@@ -10,9 +10,9 @@ import com.catinthedark.sszb.entity.{RoyalRoom, TVRoom, PotRoom, Room}
 object RenderFactory {
   def createHouse(): Array[Array[Room]] = {
     val lvl = Array(
-      Array((1, 100), (1, 100), (1, 100), (1, 100), (1, 100), (1, 100)),
-      Array((2, 200), (2, 200), (2, 200), (2, 200), (2, 200), (2, 200)),
-      Array((3, 300), (3, 300), (3, 300), (3, 300), (3, 300), (3, 300))
+      Array((1, Difficulty.cheapRoom), (1, Difficulty.cheapRoom), (1, Difficulty.cheapRoom), (1, Difficulty.cheapRoom), (1, Difficulty.cheapRoom), (1, Difficulty.cheapRoom)),
+      Array((2, Difficulty.normalRoom), (2, Difficulty.normalRoom), (2, Difficulty.normalRoom), (2, Difficulty.normalRoom), (2, Difficulty.normalRoom), (2, Difficulty.normalRoom)),
+      Array((3, Difficulty.richRoom), (3, Difficulty.richRoom), (3, Difficulty.richRoom), (3, Difficulty.richRoom), (3, Difficulty.richRoom), (3, Difficulty.richRoom))
     )
     val rooms = (for {i <- 0 to lvl.length - 1
                       line = (for {
@@ -25,12 +25,12 @@ object RenderFactory {
                       } yield room).toArray
     } yield line).toArray
 
-    val (x, y) = Const.Difficulty.firstRoom
+    val (x, y) = Difficulty.firstRoom
     rooms(x)(y).bought = true
     rooms(x)(y).armed = true
     rooms(x + 1)(y).bought = true
     rooms(x + 1)(y).armed = true
-    rooms(x + 1)(y).broken = true
+    rooms(x + 1)(y).broken = false
 
     rooms
   }
