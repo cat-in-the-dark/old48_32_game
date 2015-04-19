@@ -127,8 +127,8 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
 
         self.draw(tex, j * 128 + 128, i * 128 + 256)
 
-        Assets.Fonts.moneyBackFont.draw(self, "$: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
-        Assets.Fonts.moneyFrontFont.draw(self, "$: " + s"${shared.money}", UI.moneyPos.x + 3, UI.moneyPos.y + 3)
+        Assets.Fonts.moneyBackFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
+        Assets.Fonts.moneyFrontFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x + 3, UI.moneyPos.y + 3)
       }
       val (x, y) = currentRoom
       self.draw(Textures.frame, y * 128 + 128, x * 128 + 256)
