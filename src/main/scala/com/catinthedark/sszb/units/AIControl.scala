@@ -34,11 +34,13 @@ abstract class AIControl(shared: Shared) extends SimpleUnit with Deferred {
       }
     }
 
-    val random = new Random
-    val targetRoom = targetRooms(random.nextInt(targetRooms.length))
-    val targetRoomCenterX = targetRoom.x * 128 + 192
-    val targetRoomCenterY = targetRoom.y * 128 + 320
+    if(targetRooms.length > 0) {
+      val random = new Random
+      val targetRoom = targetRooms(random.nextInt(targetRooms.length))
+      val targetRoomCenterX = targetRoom.x * 128 + 192
+      val targetRoomCenterY = targetRoom.y * 128 + 320
 
-    shared.bullets += new Bottle(h.x, h.roadNumber * 128, targetRoom, targetRoomCenterX, targetRoomCenterY, Difficulty.bottleSpeed)
+      shared.bullets += new Bottle(h.x, h.roadNumber * 128, targetRoom, targetRoomCenterX, targetRoomCenterY, Difficulty.bottleSpeed)
+    }
   }
 }

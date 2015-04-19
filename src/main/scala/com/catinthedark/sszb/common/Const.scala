@@ -61,6 +61,9 @@ object Const {
     val firstRoom = (1, 2)
     val weightSpeed = 250
     val bottleSpeed = 250
+
+    val grateLives = 2
+
     val seedDivider = 10
 
     val clubPrice = clubBase * buyMul

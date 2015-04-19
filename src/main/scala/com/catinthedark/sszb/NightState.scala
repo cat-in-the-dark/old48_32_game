@@ -24,10 +24,12 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
   override def onActivate(): Unit = {
     shared.hits = 0
     val view = new View(shared) with LocalDeferred
+    val bulletControl = new BulletControl(shared)
     val control = new Control(shared) with LocalDeferred with Interval {
       override val interval = 0.2f
     }
     control.onMoved + (t => view.currentRoom = t)
+    control.onMoved + (t => bulletControl.currentRoom = t)
     control.onManualDay + (_ => cheatSkip = true)
 
     val ai = new AI(shared) with Interval with LocalDeferred {
@@ -35,7 +37,6 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     }
 
     val aiControl = new AIControl(shared) with LocalDeferred
-    val bulletControl = new BulletControl(shared)
     val weightsControl = new WeightControl(shared)
     val looseControl = new LooseControl(shared)
 
