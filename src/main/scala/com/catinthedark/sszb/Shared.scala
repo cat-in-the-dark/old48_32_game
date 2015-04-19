@@ -1,5 +1,6 @@
 package com.catinthedark.sszb
 
+import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{AnimationWrapper, Bullet, Creature, Room, Weight}
 
 import scala.collection.mutable
@@ -16,4 +17,5 @@ class Shared(var rooms: Array[Array[Room]],
              var lvlTime: Float,
              var hits: Int,
              var money: Int,
-             var isClubBought: Boolean = false)
+             var isClubBought: Boolean = false,
+             var currentRoom: (Int, Int) = Difficulty.firstRoom)

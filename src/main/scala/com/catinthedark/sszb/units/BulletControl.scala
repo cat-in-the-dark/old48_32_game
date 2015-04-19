@@ -35,7 +35,6 @@ class BulletControl(shared: Shared) extends SimpleUnit {
           true
         }
       } else {
-        true
         false
       }
     }

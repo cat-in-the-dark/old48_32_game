@@ -15,12 +15,11 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
 
   val onMoved = new Pipe[(Int, Int)]
   val onManualDay = new Pipe[Unit]
-  var currentRoom = Const.Difficulty.firstRoom
   def canUseRoom(x: Int, y: Int): Boolean = shared.rooms(x)(y).bought && !shared.rooms(x)(y).broken
 
   def shootFrom(room: Room) = {
     if (room.cooldown) {
-      val (x, y) = currentRoom
+      val (x, y) = shared.currentRoom
       shared.weights += (room match {
         case _: PotRoom =>
         Pot(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
@@ -37,7 +36,7 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
   override def onActivate(): Unit = {
     Gdx.input.setInputProcessor(new InputAdapter {
       override def keyDown(keycode: Int): Boolean = {
-        val (x, y) = currentRoom
+        val (x, y) = shared.currentRoom
         val rooms = shared.rooms
 
         keycode match {
@@ -48,17 +47,17 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
           case _ =>
         }
 
-        currentRoom = keycode match {
+        shared.currentRoom = keycode match {
           case Input.Keys.DOWN if x > 0 && canUseRoom(x - 1, y) => (x - 1, y)
           case Input.Keys.UP if x < rooms.length - 1 && canUseRoom(x + 1, y) => (x + 1, y)
           case Input.Keys.RIGHT if y < rooms(0).length - 1 && canUseRoom(x, y + 1) => (x, y + 1)
           case Input.Keys.LEFT if y > 0 && canUseRoom(x, y - 1) => (x, y - 1)
           case _ => (x, y)
         }
-        onMoved(currentRoom)
+        onMoved(shared.currentRoom)
 
-        if (keycode == Input.Keys.SPACE) shootFrom(rooms(currentRoom._1)(currentRoom._2))
-        println(currentRoom, shared.rooms(currentRoom._1)(currentRoom._2))
+        if (keycode == Input.Keys.SPACE) shootFrom(rooms(shared.currentRoom._1)(shared.currentRoom._2))
+        println(shared.currentRoom, shared.rooms(shared.currentRoom._1)(shared.currentRoom._2))
 
         true
       }

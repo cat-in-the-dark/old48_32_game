@@ -70,30 +70,38 @@ object Const {
     /**
      * seed in range [0,9]
      */
-    val spawnRand: Map[Int, Function[Int, (Boolean, Boolean)]] =
-      Map(
-        1 -> ((seed: Int) => if (seed == 0) (true, false) else (false, false)),
-        2 -> ((seed: Int) => {
-          if ((0 to 1).contains(seed)) (false, true)
-          else if ((1 to 2).contains(seed)) (true, false)
-          else (false, false)
-        }),
-        3 -> ((seed: Int) => {
+    def spawnRandom(lvl: Int, seed: Int):(Boolean, Boolean) = {
+      lvl match {
+        case 1 => if (seed < 5) (true, false) else (false, true)
+        case 2 =>
+          if ((0 to 4).contains(seed)) (false, true)
+          else if ((5 to 9).contains(seed)) (true, false)
+          else (true, true)
+        case 3 =>
+          if ((0 to 3).contains(seed)) (false, true)
+          else if ((4 to 8).contains(seed)) (true, false)
+          else (true, true)
+        case 4 =>
           if ((0 to 2).contains(seed)) (false, true)
-          else if ((2 to 4).contains(seed)) (true, false)
-          else (false, false)
-        }),
-        4 -> ((seed: Int) => {
-          if ((0 to 3).contains(seed)) (true, true)
-          else if ((3 to 6).contains(seed)) (true, false)
-          else (false, false)
-        }),
-        5 -> ((seed: Int) => {
-          if ((0 to 4).contains(seed)) (true, true)
-          else if ((4 to 8).contains(seed)) (false, false)
-          else (false, false)
-        })
-      )
+          else if ((3 to 5).contains(seed)) (true, false)
+          else (true, true)
+        case 5 =>
+          if ((0 to 1).contains(seed)) (false, true)
+          else if ((2 to 3).contains(seed)) (true, false)
+          else (true, true)
+        case _ => (true, true)
+      }
+    }
+
+    def generatorTimer(lvl: Int): Float  = {
+      lvl match {
+        case 1 => 2.2f
+        case 2 => 2f
+        case 3 => 1.8f
+        case 4 => 1.8f
+        case _ => 1.5f
+      }
+    }
 
     val creatures = Array(classOf[Hooligan], classOf[Whore])
   }

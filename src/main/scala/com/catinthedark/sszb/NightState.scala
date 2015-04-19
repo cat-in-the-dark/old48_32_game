@@ -33,7 +33,7 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     control.onManualDay + (_ => cheatSkip = true)
 
     val ai = new AI(shared) with Interval with LocalDeferred {
-      override val interval: Float = 1f
+      override val interval: Float = Difficulty.generatorTimer(shared.lvl)
     }
 
     val aiControl = new AIControl(shared) with LocalDeferred

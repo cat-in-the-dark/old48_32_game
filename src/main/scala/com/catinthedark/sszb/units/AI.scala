@@ -16,7 +16,7 @@ abstract class AI(shared: Shared) extends SimpleUnit with Deferred{
   override def run(delta: Float): Unit = {
     println("AI action!")
     val seed = rand.nextInt() % Difficulty.seedDivider
-    val (needZ0, needZ1) = Difficulty.spawnRand.getOrElse(shared.lvl, (s: Int) => (true, true))(seed)
+    val (needZ0, needZ1) = Difficulty.spawnRandom(shared.lvl, seed)
     println(needZ0, needZ1)
     if (needZ0)
       shared.creatures += Creatures.randomCreature(0, 0)

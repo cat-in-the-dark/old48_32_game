@@ -19,7 +19,7 @@ import com.catinthedark.sszb.lib._
  */
 abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
 
-  var currentRoom = Const.Difficulty.firstRoom
+  var currentRoom = shared.currentRoom
 
   val hudLayer = new Layer {
 
