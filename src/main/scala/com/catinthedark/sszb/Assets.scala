@@ -60,6 +60,9 @@ object Assets {
     val shopWeaponPot = new Texture(Gdx.files.internal("textures/inrerface_weapon_flower.gif"))
     val shopWeaponTv = new Texture(Gdx.files.internal("textures/inrerface_weapon_tv.gif"))
     val shopWeaponRoyal = new Texture(Gdx.files.internal("textures/inrerface_weapon_piano.gif"))
+
+    val lightOn = new Texture(Gdx.files.internal("textures/light_on.png"))
+    val lightOff = new Texture(Gdx.files.internal("textures/light_off.png"))
   }
 
   object Fonts {
