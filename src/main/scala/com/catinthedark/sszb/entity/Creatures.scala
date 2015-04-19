@@ -19,18 +19,18 @@ object Creatures {
 
 sealed trait Creature {
   var roadNumber: Int
-  var x: Int
+  var x: Float
   var speed: Int
 }
 
 case class Whore( var roadNumber: Int,
-                  var x: Int,
+                  var x: Float,
                   var health: Int = Const.Difficulty.whoreHealth,
                   var speed: Int = Const.Difficulty.whoreSpeed)
   extends Creature
 
 case class Hooligan( var roadNumber: Int,
-                     var x: Int,
+                     var x: Float,
                      var health: Int = Const.Difficulty.hooliganHealth,
                      var speed: Int = Const.Difficulty.hooliganSpeed,
                      var cooldown: Boolean = true,

@@ -37,8 +37,8 @@ object Const {
     val potRoomCooldown = 1f
     val tvRoomCooldown = 2f
     val royalRoomCooldown = 3f
-    val whoreSpeed = 2
-    val hooliganSpeed = 1
+    val whoreSpeed = 150
+    val hooliganSpeed = 75
 
     val hooliganHealth = 1
     val whoreHealth = 1
@@ -52,6 +52,7 @@ object Const {
     val potMul = 1
     val firstRoom = (1, 2)
     val weightSpeed = 250
+    val bottleSpeed = 250
 
     val seedDivider = 10
     /**

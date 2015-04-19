@@ -38,6 +38,8 @@ object Assets {
     val wndNightGate = new Texture(Gdx.files.internal("textures/window_grid_night.gif"))
     val wndNightNotBought = new Texture(Gdx.files.internal("textures/window_night_disabled.gif"))
 
+    val bottle = new Texture(Gdx.files.internal("textures/bottle.png"))
+
     val babkaInWnd = new Texture(Gdx.files.internal("textures/babka_in_window.gif"))
     val babkaHandsUp = new Texture(Gdx.files.internal("textures/babka_hands_up.gif"))
     val whoreFrames = TextureRegion.split(

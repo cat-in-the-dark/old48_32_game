@@ -35,10 +35,11 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     }
 
     val aiControl = new AIControl(shared) with LocalDeferred
+    val bulletControl = new BulletControl(shared)
     val weightsControl = new WeightControl(shared)
     val looseControl = new LooseControl(shared)
 
-    units = Seq(control, view, ai, aiControl, weightsControl, looseControl)
+    units = Seq(control, view, ai, aiControl, bulletControl, weightsControl, looseControl)
 
     shared.lvlTime = 0f
     units.foreach(_.onActivate())
@@ -53,6 +54,7 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
         room.cooldown = true
       }
     }
+    shared.bullets.clear()
     units.foreach(_.onExit())
   }
 

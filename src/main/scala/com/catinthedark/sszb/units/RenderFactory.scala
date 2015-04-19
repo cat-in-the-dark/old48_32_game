@@ -14,16 +14,17 @@ object RenderFactory {
       Array((2, 200), (2, 200), (2, 200), (2, 200), (2, 200), (2, 200)),
       Array((3, 300), (3, 300), (3, 300), (3, 300), (3, 300), (3, 300))
     )
-    val rooms = lvl.map(row => {
-      row.map(roomType => {
-        val room = roomType match {
-          case (1, price) => PotRoom(false, false, false, false, true, price)
-          case (2, price) => TVRoom(false, false, false, false, true, price)
-          case (3, price) => RoyalRoom(false, false, false, false, true, price)
-        }
-        room.asInstanceOf[Room]
-      })
-    })
+    val rooms = (for {i <- 0 to lvl.length - 1
+                      line = (for {
+                        j <- 0 to lvl(0).length - 1
+                        room = (lvl(i)(j) match {
+                          case (1, price) => PotRoom(false, false, false, false, true, price, j, i)
+                          case (2, price) => TVRoom(false, false, false, false, true, price, j, i)
+                          case (3, price) => RoyalRoom(false, false, false, false, true, price, j, i)
+                        }).asInstanceOf[Room]
+                      } yield room).toArray
+    } yield line).toArray
+
     val (x, y) = Const.Difficulty.firstRoom
     rooms(x)(y).bought = true
     rooms(x)(y).armed = true
@@ -33,4 +34,5 @@ object RenderFactory {
 
     rooms
   }
+
 }

@@ -2,7 +2,6 @@ package com.catinthedark.sszb
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.{InputAdapter, Input, Gdx}
-import com.catinthedark.sszb.Assets
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.common.Const.UI
 import com.catinthedark.sszb.entity.{RoyalRoom, TVRoom, PotRoom, Room}

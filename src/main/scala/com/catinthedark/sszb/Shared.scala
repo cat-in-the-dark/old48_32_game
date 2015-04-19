@@ -1,7 +1,7 @@
 package com.catinthedark.sszb
 
 import com.badlogic.gdx.graphics.g2d.Animation
-import com.catinthedark.sszb.entity.{AnimationWrapper, Weight, Creature, Room}
+import com.catinthedark.sszb.entity.{AnimationWrapper, Bullet, Weight, Creature, Room}
 
 import scala.collection.mutable
 
@@ -12,6 +12,7 @@ class Shared(var rooms: Array[Array[Room]],
              val creatures: mutable.ListBuffer[Creature],
              val weights: mutable.ListBuffer[Weight],
              val animations: mutable.ListBuffer[AnimationWrapper],
+             val bullets: mutable.ListBuffer[Bullet],
              var lvl: Int,
              var lvlTime: Float,
              var hits: Int,

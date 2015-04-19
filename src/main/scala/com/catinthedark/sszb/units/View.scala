@@ -50,8 +50,8 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     val creaturesBatch = new SpriteBatch
     creaturesBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
     var time = 0f
-    val weightsBatch = new SpriteBatch
-    weightsBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
+    val weaponsBatch = new SpriteBatch
+    weaponsBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
 
     override def render(delta: Float): Unit = {
       val (x, y) = currentRoom
@@ -111,7 +111,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
           a.stateTime += delta
         })
       }
-      weightsBatch.managed { self =>
+      weaponsBatch.managed { self =>
         shared.weights.foreach {
           case tv: TV =>
             self.draw(Textures.tv, tv.x, tv.y)
@@ -119,6 +119,9 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
             self.draw(Textures.pot, pot.x, pot.y)
           case royal: Royal =>
             self.draw(Textures.royal, royal.x, royal.y)
+        }
+        shared.bullets.foreach { bullet =>
+          self.draw(Textures.bottle, bullet.x, bullet.y)
         }
       }
     }
