@@ -71,8 +71,8 @@ object Const {
     val hooliganHealth = 1
     val whoreHealth = 1
 
-    val whorePrice = 3
-    val hooliganPrice = 4
+    val whorePrice = 4
+    val hooliganPrice = 5
 
     val clubBase = 20
     val cheapRoom = 1
@@ -88,7 +88,7 @@ object Const {
 
     val startMoney = cheapRoom * buyMul
     val firstRoom = (1, 2)
-    val weightSpeed = 250
+    val weightSpeed = 400
     val bottleSpeed = 250
 
     val grateLives = 2
@@ -143,7 +143,7 @@ object Const {
   }
 
   object Timing {
-    val levelTime = 40f
+    val levelTime = 30f
   }
 
   object Ints {

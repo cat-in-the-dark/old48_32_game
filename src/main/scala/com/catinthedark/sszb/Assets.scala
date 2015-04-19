@@ -25,7 +25,8 @@ object Assets {
     val hudBack = new Texture(Gdx.files.internal("textures/hud_back.png"))
     val hud = new Texture(Gdx.files.internal("textures/hud.png"))
     val hudFront = new Texture(Gdx.files.internal("textures/hud_front.png"))
-    val bg = new Texture(Gdx.files.internal("textures/bg.gif"))
+    val bg = new Texture(Gdx.files.internal("textures/bg_night.gif"))
+    val bgDay = new Texture(Gdx.files.internal("textures/bg_day.gif"))
     val frame = new Texture(Gdx.files.internal("textures/frame.png"))
 
     val wndDayNotBought = new Texture(Gdx.files.internal("textures/window_day_disabled.gif"))
