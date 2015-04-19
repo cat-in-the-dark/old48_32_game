@@ -37,8 +37,9 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
 
     val aiControl = new AIControl(shared) with LocalDeferred
     val weightsControl = new WeightControl(shared)
+    val looseControl = new LooseControl(shared)
 
-    units = Seq(control, view, ai, aiControl, weightsControl)
+    units = Seq(control, view, ai, aiControl, weightsControl, looseControl)
 
     time = 0f
     units.foreach(_.onActivate())

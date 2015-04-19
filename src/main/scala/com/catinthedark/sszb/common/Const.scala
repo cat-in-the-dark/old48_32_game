@@ -80,6 +80,7 @@ object Const {
 
   object Physics {
     val blockSize = new Vector2(1f, 1f)
+    val clubXPos = 1100;
   }
 
   object Timing {
