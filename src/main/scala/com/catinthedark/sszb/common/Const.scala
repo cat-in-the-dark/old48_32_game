@@ -21,6 +21,8 @@ object Const {
     val moneyPos = new Vector2(1150, 655)
 
     val animationSpeed = 0.2f
+
+    val groundLevel = 64f
   }
 
   object Difficulty {

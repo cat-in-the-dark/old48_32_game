@@ -20,7 +20,6 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
 
   def shootFrom(room: Room) = {
     if (room.cooldown) {
-      println("BUM")
       val (x, y) = currentRoom
       shared.weights += (room match {
         case _: PotRoom =>
