@@ -66,21 +66,23 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         for (i <- 0 to shared.rooms.length - 1;
              j <- 0 to shared.rooms(0).length - 1) {
           val room = shared.rooms(i)(j)
-          val tex = if (room.broken) Textures.wndNightBroken
-          else if (room.grate) Textures.wndNightGate
-          else if (room.bought) Textures.wndNightNormal
-          else Textures.wndNightNotBought
+          val tex =
+            if (i == x && j == y && room.cooldown) Textures.wndNightNormal
+            else if (room.broken) Textures.wndNightBroken
+            else if (room.grate) Textures.wndNightGate
+            else if (room.bought) Textures.wndNightNormal
+            else Textures.wndNightNotBought
           self.draw(tex, j * 128 + 128, i * 128 + 256)
         }
       }
-      creaturesBatch.managed{ self =>
+      creaturesBatch.managed { self =>
         if (shared.rooms(x)(y).cooldown) {
           self.draw(Textures.babkaInWnd, y * 128 + 128, x * 128 + 256)
         }
         shared.creatures.foreach({
-          case w @ Whore(_,_,_,_) =>
+          case w@Whore(_, _, _, _) =>
             self.draw(Animations.whore.getKeyFrame(time), w.x, w.roadNumber * 128)
-          case h @ Hooligan(_,_,_,_,_) =>
+          case h@Hooligan(_, _, _, _, _) =>
             self.draw(Animations.hooliganAttack.getKeyFrame(time), h.x, h.roadNumber * 128)
           case _ =>
         })
