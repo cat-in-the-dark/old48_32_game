@@ -43,6 +43,12 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     }
   }
 
+  def buyClub() = {
+    if (shared.money >= Const.Difficulty.clubPrice) {
+      shared.isClubBought = true
+    }
+  }
+
   def buyGate(room: Room) = {
     if (!room.grate) {
       if (shared.money >= room.gratePrice) {
@@ -98,6 +104,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
           case Input.Keys.NUM_1 => buyOrRepair(room)
           case Input.Keys.NUM_2 if room.bought && !room.broken => buyGate(room)
           case Input.Keys.NUM_3 if room.bought && !room.broken => buyWeapon(room)
+          case Input.Keys.NUM_4 => buyClub()
           case _ =>
         }
 
@@ -194,7 +201,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   override def run(delta: Float): Option[Boolean] = {
     render()
     if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
-      Some(false)
+      Some(shared.isClubBought)
     else
       None
   }
