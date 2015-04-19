@@ -46,6 +46,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   def buyClub() = {
     if (shared.money >= Const.Difficulty.clubPrice) {
       shared.isClubBought = true
+      shared.money = Const.Difficulty.clubPrice
     }
   }
 
@@ -226,7 +227,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
 
   override def run(delta: Float): Option[Boolean] = {
     render()
-    if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
+    if (Gdx.input.isKeyPressed(Input.Keys.ENTER) || shared.isClubBought)
       Some(shared.isClubBought)
     else
       None
