@@ -38,7 +38,13 @@ object Const {
     val tvRoomCooldown = 2f
     val royalRoomCooldown = 3f
     val hooliganSpeed = 75
-    val hooliganCooldown = 3
+    def hooliganCooldown(lvl: Int): Float = {
+      lvl match {
+        case 1 => 4f
+        case 2 => 3f
+        case _ => 2f
+      }
+    }
     val whoreSpeed = 150
     val whoreCooldown = 5
 

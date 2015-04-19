@@ -19,7 +19,7 @@ abstract class AIControl(shared: Shared) extends SimpleUnit with Deferred {
         h.attacking = true
         h.stateTime = 0f
         shoot(h)
-        defer(Difficulty.hooliganCooldown, () => h.cooldown = true)
+        defer(Difficulty.hooliganCooldown(shared.lvl), () => h.cooldown = true)
       case w: Whore if w.cooldown =>
         w.cooldown = false
         w.attacking = true
