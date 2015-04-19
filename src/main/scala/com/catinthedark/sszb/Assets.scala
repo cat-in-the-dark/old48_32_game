@@ -47,7 +47,7 @@ object Assets {
     val babkaInWnd = new Texture(Gdx.files.internal("textures/babka_in_window.gif"))
     val babkaHandsUp = new Texture(Gdx.files.internal("textures/babka_hands_up.gif"))
     val whoreFrames = TextureRegion.split(
-      new Texture(Gdx.files.internal("textures/whore.png")), 92, 128)
+      new Texture(Gdx.files.internal("textures/whore.gif")), 88, 128)
     val hooliganAttackFrames = TextureRegion.split(
       new Texture(Gdx.files.internal("textures/hooligan.png")), 120, 128)
     val royalCrash = TextureRegion.split(
@@ -114,6 +114,8 @@ object Assets {
 
     val whore = loopingAnimation(Textures.whoreFrames,
       (0, 0), (0, 1), (0, 2), (0, 3))
+    val whoreAttack = loopingAnimation(Textures.whoreFrames,
+      (0, 4), (0, 5), (0, 6), (0, 7))
     val hooliganAttack = normalAnimation(Const.UI.animationSpeed, Textures.hooliganAttackFrames,
       (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8), (0, 9))
     val hooligan = loopingAnimation(Textures.hooliganAttackFrames, (0, 0), (0, 1))

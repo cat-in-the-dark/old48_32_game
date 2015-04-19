@@ -133,8 +133,18 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         def drawCreatures(c: Creature): Unit = {
           c match {
             case w: Whore =>
+              val animation = if (w.attacking) {
+                val a = Animations.whoreAttack
+                defer(a.getAnimationDuration, () => {
+                  w.attacking = false
+                })
+                a
+              } else {
+                Animations.whore
+              }
               val y = if (w.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
-              self.draw(Animations.whore.getKeyFrame(time), w.x, y)
+              self.draw(animation.getKeyFrame(w.stateTime), w.x, y)
+              w.stateTime += delta
             case h: Hooligan =>
               val animation = if (h.attacking) {
                 val a = Animations.hooliganAttack
