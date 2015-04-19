@@ -47,6 +47,12 @@ object Assets {
     val tv = new Texture(Gdx.files.internal("textures/tv.png"))
     val royal = new Texture(Gdx.files.internal("textures/royal.png"))
     val pot = new Texture(Gdx.files.internal("textures/pot.png"))
+
+    val shopBye = new Texture(Gdx.files.internal("textures/inrerface_buy.gif"))
+    val shopRepair = new Texture(Gdx.files.internal("textures/inrerface_repair.gif"))
+    val shopGrate = new Texture(Gdx.files.internal("textures/inrerface_grid.gif"))
+    val shopWeapon = new Texture(Gdx.files.internal("textures/inrerface_weapon.gif"))
+    val shopClub = new Texture(Gdx.files.internal("textures/interface_club.gif"))
   }
 
   object Fonts {
@@ -73,16 +79,19 @@ object Assets {
     }
 
     val whore = loopingAnimation(Textures.whoreFrames,
-      (0,0), (0,1), (0,2), (0,3))
+      (0, 0), (0, 1), (0, 2), (0, 3))
     val hooliganAttack = normalAnimation(Textures.hooliganAttackFrames,
-      (0,0), (0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(0,7),(0,8),(0,9))
-    val hooligan = loopingAnimation(Textures.hooliganAttackFrames, (0,0), (0,1))
+      (0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7), (0, 8), (0, 9))
+    val hooligan = loopingAnimation(Textures.hooliganAttackFrames, (0, 0), (0, 1))
 
   }
 
   object Audios {
     val roundEnd = Gdx.audio.newSound(Gdx.files.internal("sound/round_end.mp3"))
     val bye = Gdx.audio.newSound(Gdx.files.internal("sound/bye.mp3"))
+    val potDestroy = Gdx.audio.newSound(Gdx.files.internal("sound/pot_destroy.mp3"))
+    val royalDeploy = Gdx.audio.newSound(Gdx.files.internal("sound/royal_deploy.mp3"))
+    val tvDestroy = Gdx.audio.newSound(Gdx.files.internal("sound/tv_destroy.mp3"))
   }
 
 }
