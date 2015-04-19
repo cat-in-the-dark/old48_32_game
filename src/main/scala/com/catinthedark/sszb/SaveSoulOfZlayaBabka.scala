@@ -43,7 +43,7 @@ class SaveSoulOfZlayaBabka extends Game {
       mutable.ListBuffer(),
       mutable.ListBuffer(),
       mutable.ListBuffer(),
-      1, 0, 0,
+      5, 0, 0,
       Const.Difficulty.startMoney
     )
 
@@ -70,8 +70,14 @@ class SaveSoulOfZlayaBabka extends Game {
         case false => night
       }
     })
-    rm.addRoute(gameWin, anyway => t1)
-    rm.addRoute(gameOver, anyway => t1)
+    rm.addRoute(gameWin, anyway => {
+      shared.reset()
+      t1
+    })
+    rm.addRoute(gameOver, anyway => {
+      shared.reset()
+      t1
+    })
     rm.start(logo)
   }
 

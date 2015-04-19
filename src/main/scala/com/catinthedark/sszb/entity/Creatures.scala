@@ -22,13 +22,14 @@ sealed trait Creature {
   var roadNumber: Int
   var x: Float
   var speed: Int
+  var cooldown: Boolean
 }
 
 case class Whore(var roadNumber: Int,
                  var x: Float,
                  var health: Int = Const.Difficulty.whoreHealth,
                  var speed: Int = Const.Difficulty.whoreSpeed,
-                 var cooldown: Boolean = true,
+                 var cooldown: Boolean = false,
                  var attacking: Boolean = false,
                  var stateTime: Float = 0f)
   extends Creature
@@ -37,7 +38,7 @@ case class Hooligan(var roadNumber: Int,
                     var x: Float,
                     var health: Int = Const.Difficulty.hooliganHealth,
                     var speed: Int = Const.Difficulty.hooliganSpeed,
-                    var cooldown: Boolean = true,
+                    var cooldown: Boolean = false,
                     var attacking: Boolean = false,
                     var stateTime: Float = 0f)
   extends Creature

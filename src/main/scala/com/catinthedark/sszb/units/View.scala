@@ -45,7 +45,6 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
       if (makeSelfie) {
         Gdx.gl.glEnable(GL20.GL_BLEND)
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
-        println("selfie")
         val shapeRenderer = new ShapeRenderer
         shapeRenderer.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
         shapeRenderer.begin(ShapeType.Filled)

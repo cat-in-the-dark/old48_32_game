@@ -1,7 +1,9 @@
 package com.catinthedark.sszb
 
+import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{AnimationWrapper, Bullet, Creature, Room, Weight}
+import com.catinthedark.sszb.units.RenderFactory
 
 import scala.collection.mutable
 
@@ -18,4 +20,14 @@ class Shared(var rooms: Array[Array[Room]],
              var hits: Int,
              var money: Int,
              var isClubBought: Boolean = false,
-             var currentRoom: (Int, Int) = Difficulty.firstRoom)
+             var currentRoom: (Int, Int) = Difficulty.firstRoom) {
+  def reset() = {
+    money = Difficulty.startMoney
+    lvl = 1
+    hits = 0
+    rooms = RenderFactory.createHouse()
+    creatures.clear()
+    weights.clear()
+    currentRoom = Const.Difficulty.firstRoom
+  }
+}

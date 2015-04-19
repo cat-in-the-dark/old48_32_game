@@ -48,7 +48,9 @@ object Const {
       }
     }
     val whoreSpeed = 150
-    val whoreCooldown = 5
+    def whoreCooldown(lvl: Int) = {
+      5
+    }
 
     val flashStartAlpha = 1f
     val flashSpeed = 0.3f
