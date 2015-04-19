@@ -80,10 +80,20 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
           self.draw(Textures.babkaInWnd, y * 128 + 128, x * 128 + 256)
         }
         shared.creatures.foreach({
-          case w@Whore(_, _, _, _) =>
+          case w: Whore =>
             self.draw(Animations.whore.getKeyFrame(time), w.x, w.roadNumber * 128)
-          case h@Hooligan(_, _, _, _, _) =>
-            self.draw(Animations.hooliganAttack.getKeyFrame(time), h.x, h.roadNumber * 128)
+          case h: Hooligan =>
+            val animation = if (h.attacking) {
+              val a = Animations.hooliganAttack
+              defer(a.getAnimationDuration, () => {
+                h.attacking = false
+              })
+              a
+            } else {
+              Animations.hooligan
+            }
+            self.draw(animation.getKeyFrame(h.stateTime), h.x, h.roadNumber * 128)
+            h.stateTime += delta
           case _ =>
         })
       }

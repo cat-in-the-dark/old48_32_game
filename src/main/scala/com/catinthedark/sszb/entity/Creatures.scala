@@ -33,5 +33,7 @@ case class Hooligan( var roadNumber: Int,
                      var x: Int,
                      var health: Int = Const.Difficulty.hooliganHealth,
                      var speed: Int = Const.Difficulty.hooliganSpeed,
-                     var cooldown: Boolean = true)
+                     var cooldown: Boolean = true,
+                     var attacking: Boolean = false,
+                     var stateTime: Float = 0f)
   extends Creature

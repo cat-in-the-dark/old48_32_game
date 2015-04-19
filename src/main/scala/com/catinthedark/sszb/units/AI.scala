@@ -22,7 +22,5 @@ abstract class AI(shared: Shared) extends SimpleUnit with Deferred{
       shared.creatures += Creatures.randomCreature(0, 0)
     if (needZ1)
       shared.creatures += Creatures.randomCreature(1, 0)
-
-    println(shared.creatures)
   }
 }
