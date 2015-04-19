@@ -61,7 +61,13 @@ class WeightControl(shared: Shared) extends SimpleUnit {
       if (weight.y < UI.hitL0Level) {
         if (oneLevelHitTest) {
           shared.creatures --= shared.creatures.filter { creature: Creature =>
-            if (((weight.x - weightWidth / 2) < creature.x) && (creature.x < (weight.x + weightWidth / 2) && (creature.roadNumber == 1))) {
+            val wx1 = weight.x
+            val wx2 = weight.x + weightWidth
+            val cx1 = creature.x
+            val cx2 = creature.x + creature.width
+            if ((((wx1 < cx1) && ((wx2 > cx1) || (wx2 > cx2)))
+              || ((wx1 >= cx1) && ((wx2 <= cx1) || (wx2 <= cx2))))
+              && (creature.roadNumber == 1)) {
               creature match {
                 case h: Hooligan =>
                   val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
@@ -79,16 +85,21 @@ class WeightControl(shared: Shared) extends SimpleUnit {
 
       if (weight.y < UI.hitL1Level) {
         shared.creatures --= shared.creatures.filter { creature: Creature =>
-           if (((weight.x - weightWidth / 2) < creature.x) && (creature.x < (weight.x + weightWidth / 2))) {
-             creature match {
-               case h: Hooligan =>
-                 killHooligan(h.x, h.roadNumber * 128)
-               case w: Whore =>
-                 killWhore(w.x, w.roadNumber * 128)
-               case _ =>
-             }
-             true
-           } else false
+          val wx1 = weight.x
+          val wx2 = weight.x + weightWidth
+          val cx1 = creature.x
+          val cx2 = creature.x + creature.width
+          if (((wx1 < cx1) && ((wx2 > cx1) || (wx2 > cx2)))
+            || ((wx1 >= cx1) && ((wx2 <= cx1) || (wx2 <= cx2)))) {
+            creature match {
+              case h: Hooligan =>
+                killHooligan(h.x, h.roadNumber * 128)
+              case w: Whore =>
+                killWhore(w.x, w.roadNumber * 128)
+              case _ =>
+            }
+            true
+          } else false
         }
       }
       weight.y -= weight.speed * delta

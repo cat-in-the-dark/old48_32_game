@@ -32,6 +32,9 @@ object Const {
     val tvWidth = 64f
     val royalwWidth = 92f
 
+    val hooliganWidth = 92f
+    val whoreWidth = 64f
+
     val hitL0Level = 192f
     val hitL1Level = 128f
     val groundLevel = 64f
