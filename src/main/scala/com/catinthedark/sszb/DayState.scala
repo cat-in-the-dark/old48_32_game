@@ -170,7 +170,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
       if (!room.bought) {
         self.draw(Textures.shopBye, 0, 0)
         val font =
-          if (shared.money > room.buyPrice)
+          if (shared.money >= room.buyPrice)
             Assets.Fonts.greenFont
           else
             Assets.Fonts.redFont
