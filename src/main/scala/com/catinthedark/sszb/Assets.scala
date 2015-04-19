@@ -38,6 +38,10 @@ object Assets {
     val wndNightGate = new Texture(Gdx.files.internal("textures/window_grid_night.gif"))
     val wndNightNotBought = new Texture(Gdx.files.internal("textures/window_night_disabled.gif"))
 
+    val wndBackPot = new Texture(Gdx.files.internal("textures/flower_in_window.gif"))
+    val wndBackTv = new Texture(Gdx.files.internal("textures/tv_in_window.gif"))
+    val wndBackRoyal = new Texture(Gdx.files.internal("textures/piano_in_window.gif"))
+
     val bottle = new Texture(Gdx.files.internal("textures/bottle.png"))
 
     val babkaInWnd = new Texture(Gdx.files.internal("textures/babka_in_window.gif"))
@@ -63,6 +67,8 @@ object Assets {
 
     val lightOn = new Texture(Gdx.files.internal("textures/light_on.png"))
     val lightOff = new Texture(Gdx.files.internal("textures/light_off.png"))
+    val lightDay = new Texture(Gdx.files.internal("textures/light_day.png"))
+
   }
 
   object Fonts {

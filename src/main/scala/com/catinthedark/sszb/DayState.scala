@@ -127,6 +127,29 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
            j <- 0 to shared.rooms(0).length - 1) {
 
         val room = shared.rooms(i)(j)
+
+        room match {
+          case r: PotRoom if !r.broken =>
+            self.draw(Assets.Textures.wndBackPot, j * 128 + 128 + 55, i * 128 + 256 + 30)
+          case r: TVRoom if !r.broken =>
+            self.draw(Assets.Textures.wndBackTv, j * 128 + 128 + 50, i * 128 + 256 + 30)
+          case r: RoyalRoom if !r.broken =>
+            self.draw(Assets.Textures.wndBackRoyal, j * 128 + 128 + 60, i * 128 + 256 + 30)
+          case _ =>
+        }
+
+        val bgTex = room match {
+          case r: Room if !r.broken && r.bought =>
+            Some(Assets.Textures.lightOn)
+          case r: Room if !r.broken && !r.bought =>
+            Some(Assets.Textures.lightDay)
+          case _ => None
+        }
+
+        bgTex.map { tex =>
+          self.draw(tex, j * 128 + 128, i * 128 + 256)
+        }
+
         val tex = if (room.broken) Textures.wndDayBroken
         else if (room.grate) Textures.wndDayGrate
         else if (room.bought) Textures.wndDayNormal
@@ -134,9 +157,10 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
 
         self.draw(tex, j * 128 + 128, i * 128 + 256)
 
-        Assets.Fonts.moneyBackFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
-        Assets.Fonts.moneyFrontFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x + 3, UI.moneyPos.y + 3)
       }
+      Assets.Fonts.moneyBackFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
+      Assets.Fonts.moneyFrontFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x + 3, UI.moneyPos.y + 3)
+
       //Bye/Repair
       val (x, y) = currentRoom
       self.draw(Textures.frame, y * 128 + 128, x * 128 + 256)

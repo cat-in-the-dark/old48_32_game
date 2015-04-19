@@ -3,6 +3,8 @@ package com.catinthedark.sszb.units
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.catinthedark.sszb.common.Const
 import com.badlogic.gdx.math.Matrix4
 import com.catinthedark.sszb.entity._
@@ -67,6 +69,28 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         for (i <- 0 to shared.rooms.length - 1;
              j <- 0 to shared.rooms(0).length - 1) {
           val room = shared.rooms(i)(j)
+          room match {
+            case r: PotRoom if !r.broken =>
+              self.draw(Assets.Textures.wndBackPot, j * 128 + 128 + 55, i * 128 + 256 + 30)
+            case r: TVRoom if !r.broken =>
+              self.draw(Assets.Textures.wndBackTv, j * 128 + 128 + 50, i * 128 + 256 + 30)
+            case r: RoyalRoom if !r.broken =>
+              self.draw(Assets.Textures.wndBackRoyal, j * 128 + 128 + 60, i * 128 + 256 + 30)
+            case _ =>
+          }
+
+          val bgTex = room match {
+            case r: Room if !r.broken && r.bought =>
+              Some(Assets.Textures.lightOn)
+            case r: Room if !r.broken && !r.bought =>
+              Some(Assets.Textures.lightOff)
+            case _ => None
+          }
+
+          bgTex.map { tex =>
+            self.draw(tex, j * 128 + 128, i * 128 + 256)
+          }
+
           val tex =
             if (i == x && j == y && room.cooldown) Textures.wndNightNormal
             else if (room.broken) Textures.wndNightBroken
@@ -76,6 +100,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
           self.draw(tex, j * 128 + 128, i * 128 + 256)
         }
       }
+
       creaturesBatch.managed { self =>
         if (shared.rooms(x)(y).cooldown) {
           val room = shared.rooms(x)(y)
@@ -125,6 +150,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         }
       }
     }
+
     def dispose() = {
       bgBatch.dispose()
       wndBatch.dispose()
@@ -132,7 +158,8 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
   }
 
 
-  override def onActivate(): Unit = {}
+  override def onActivate(): Unit = {
+  }
 
   override def onExit(): Unit = {
     gameLayer.dispose()
