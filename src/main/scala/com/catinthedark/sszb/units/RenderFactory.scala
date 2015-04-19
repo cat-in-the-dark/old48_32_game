@@ -10,7 +10,7 @@ import com.catinthedark.sszb.entity.{RoyalRoom, TVRoom, PotRoom, Room}
 object RenderFactory {
   def createHouse(): Array[Array[Room]] = {
     val lvl = Array(
-      Array((2, Difficulty.richRoom), (1, Difficulty.cheapRoom), (1, Difficulty.cheapRoom), (1, Difficulty.cheapRoom), (2, Difficulty.normalRoom), (3, Difficulty.richRoom)),
+      Array((2, Difficulty.richRoom), (1, Difficulty.richRoom), (1, Difficulty.richRoom), (1, Difficulty.richRoom), (2, Difficulty.normalRoom), (3, Difficulty.richRoom)),
       Array((1, Difficulty.cheapRoom), (1, Difficulty.normalRoom), (2, Difficulty.normalRoom), (2, Difficulty.normalRoom), (1, Difficulty.normalRoom), (3, Difficulty.richRoom)),
       Array((3, Difficulty.normalRoom), (3, Difficulty.richRoom), (1, Difficulty.cheapRoom), (3, Difficulty.normalRoom), (2, Difficulty.richRoom), (1, Difficulty.cheapRoom))
     )
