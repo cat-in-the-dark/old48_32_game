@@ -130,6 +130,28 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
       }
 
       creaturesBatch.managed { self =>
+        def drawCreatures(c: Creature): Unit = {
+          c match {
+            case w: Whore =>
+              val y = if (w.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+              self.draw(Animations.whore.getKeyFrame(time), w.x, y)
+            case h: Hooligan =>
+              val animation = if (h.attacking) {
+                val a = Animations.hooliganAttack
+                defer(a.getAnimationDuration, () => {
+                  h.attacking = false
+                })
+                a
+              } else {
+                Animations.hooligan
+              }
+              val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+              self.draw(animation.getKeyFrame(h.stateTime), h.x, y)
+              h.stateTime += delta
+            case _ =>
+          }
+        }
+
         if (shared.rooms(x)(y).cooldown) {
           val room = shared.rooms(x)(y)
           room match {
@@ -139,23 +161,18 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
           }
           self.draw(Textures.babkaHandsUp, y * 128 + 128 + 23, x * 128 + 256 + 30)
         }
-        shared.creatures.foreach({
-          case w: Whore =>
-            self.draw(Animations.whore.getKeyFrame(time), w.x, w.roadNumber * 128)
-          case h: Hooligan =>
-            val animation = if (h.attacking) {
-              val a = Animations.hooliganAttack
-              defer(a.getAnimationDuration, () => {
-                h.attacking = false
-              })
-              a
-            } else {
-              Animations.hooligan
-            }
-            self.draw(animation.getKeyFrame(h.stateTime), h.x, h.roadNumber * 128)
-            h.stateTime += delta
-          case _ =>
-        })
+        shared.creatures.filter{ c =>
+          c.roadNumber == 1
+        }.foreach{ c =>
+          drawCreatures(c)
+        }
+
+        shared.creatures.filter{ c =>
+          c.roadNumber == 0
+        }.foreach{ c =>
+          drawCreatures(c)
+        }
+
         shared.animations.foreach({ a =>
           self.draw(a.animation.getKeyFrame(a.stateTime), a.x, a.y)
           defer(a.animation.getAnimationDuration, () => {

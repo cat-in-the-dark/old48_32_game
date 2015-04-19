@@ -64,9 +64,11 @@ class WeightControl(shared: Shared) extends SimpleUnit {
             if (((weight.x - weightWidth / 2) < creature.x) && (creature.x < (weight.x + weightWidth / 2) && (creature.roadNumber == 1))) {
               creature match {
                 case h: Hooligan =>
-                  killHooligan(h.x, h.roadNumber * 128)
+                  val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+                  killHooligan(h.x, y)
                 case w: Whore =>
-                  killWhore(w.x, w.roadNumber * 128)
+                  val y = if (w.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+                  killWhore(w.x, y)
                 case _ =>
               }
               true

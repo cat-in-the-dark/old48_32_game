@@ -9,6 +9,8 @@ import com.catinthedark.sszb.entity.{Whore, Hooligan, Creature}
 object Const {
 
   object UI {
+    val bottomRow = 16
+    val topRow = 122
 
     val screenSize = new Vector2(1366, 768)
     var COOLDOWN_INDICATOR_COL = new Vector2(1185, 510)

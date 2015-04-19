@@ -11,8 +11,8 @@ object Magic {
 
   class RichSpriteBatch(val batch: SpriteBatch) {
     def managed(f: SpriteBatch => Unit): Unit = {
-      batch.begin();
-      f(batch);
+      batch.begin()
+      f(batch)
       batch.end()
     }
 
