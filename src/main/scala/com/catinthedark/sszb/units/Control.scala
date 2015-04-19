@@ -19,7 +19,7 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
   def canUseRoom(x: Int, y: Int): Boolean = shared.rooms(x)(y).bought && !shared.rooms(x)(y).broken
 
   def shootFrom(room: Room) = {
-    if (room.cooldown) {
+    if (room.armed && room.cooldown) {
       val (x, y) = shared.currentRoom
       shared.weights += (room match {
         case _: PotRoom =>

@@ -164,10 +164,12 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
 
         if (shared.rooms(x)(y).cooldown) {
           val room = shared.rooms(x)(y)
-          room match {
-            case _: PotRoom => self.draw(Textures.pot, y * 128 + 128, x * 128 + 256 + 120)
-            case _: TVRoom => self.draw(Textures.tv, y * 128 + 128 + 23, x * 128 + 256 + 115)
-            case _: RoyalRoom => self.draw(Textures.royal, y * 128 + 128 - 10, x * 128 + 256 + 120)
+          if (shared.rooms(x)(y).armed) {
+            room match {
+              case _: PotRoom => self.draw(Textures.pot, y * 128 + 128, x * 128 + 256 + 120)
+              case _: TVRoom => self.draw(Textures.tv, y * 128 + 128 + 23, x * 128 + 256 + 115)
+              case _: RoyalRoom => self.draw(Textures.royal, y * 128 + 128 - 10, x * 128 + 256 + 120)
+            }
           }
           self.draw(Textures.babkaHandsUp, y * 128 + 128 + 23, x * 128 + 256 + 30)
         }

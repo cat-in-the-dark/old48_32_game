@@ -190,7 +190,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
 
       //Grate
       self.draw(Textures.shopGrate, 343, 0)
-      if (!room.grate && !room.broken) {
+      if (!room.grate && !room.broken && room.bought) {
         val font =
           if (shared.money >= room.gratePrice)
             Assets.Fonts.greenFont
@@ -205,7 +205,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
         case _: RoyalRoom => Assets.Textures.shopWeaponRoyal
       }
       self.draw(weaponTex, 686, 0)
-      if (!room.armed && !room.broken) {
+      if (!room.armed && !room.broken && room.bought) {
         val font =
           if (shared.money >= room.weaponPrice)
             Assets.Fonts.greenFont
