@@ -82,6 +82,7 @@ object Assets {
 
   object Audios {
     val roundEnd = Gdx.audio.newSound(Gdx.files.internal("sound/round_end.mp3"))
+    val bye = Gdx.audio.newSound(Gdx.files.internal("sound/bye.mp3"))
   }
 
 }
