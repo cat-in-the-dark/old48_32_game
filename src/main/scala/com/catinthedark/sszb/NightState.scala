@@ -20,8 +20,10 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
 
   var paused = false
   var cheatSkip = false
+  var forceReload = false
 
   override def onActivate(): Unit = {
+    forceReload = false
     shared.hits = 0
     val view = new View(shared) with LocalDeferred
     val bulletControl = new BulletControl(shared)
@@ -31,6 +33,7 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     control.onMoved + (t => view.currentRoom = t)
     control.onMoved + (t => bulletControl.currentRoom = t)
     control.onManualDay + (_ => cheatSkip = true)
+    control.onGameReload + (_ => forceReload = true)
 
     val ai = new AI(shared) with Interval with LocalDeferred {
       override val interval: Float = Difficulty.generatorTimer(shared.lvl)
@@ -77,6 +80,8 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     if (shared.lvlTime > Timing.levelTime)
       Some(true)
     else if (shared.hits >= 5) {
+      Some(false)
+    } else if(forceReload){
       Some(false)
     } else {
       None
