@@ -5,22 +5,22 @@ object Weights {
 }
 
 sealed trait Weight {
-  var x: Int
-  var y: Int
+  var x: Float
+  var y: Float
   var speed: Int
 }
 
-case class Pot(var x: Int,
-               var y: Int,
+case class Pot(var x: Float,
+               var y: Float,
                var speed: Int)
   extends Weight
 
-case class TV(var x: Int,
-               var y: Int,
+case class TV(var x: Float,
+               var y: Float,
                var speed: Int)
   extends Weight
 
-case class Royal(var x: Int,
-               var y: Int,
+case class Royal(var x: Float,
+               var y: Float,
                var speed: Int)
   extends Weight

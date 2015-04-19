@@ -5,7 +5,7 @@ import com.catinthedark.sszb.common.Const.Timing
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{Room, Creature}
 import com.catinthedark.sszb.lib._
-import com.catinthedark.sszb.units.{AIControl, AI, Control, View}
+import com.catinthedark.sszb.units._
 
 import scala.collection.mutable
 
@@ -36,7 +36,9 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     }
 
     val aiControl = new AIControl(shared) with LocalDeferred
-    units = Seq(control, view, ai, aiControl)
+    val weightsControl = new WeightControl(shared)
+
+    units = Seq(control, view, ai, aiControl, weightsControl)
 
     time = 0f
     units.foreach(_.onActivate())
@@ -45,6 +47,12 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
   override def onExit(): Unit = {
     cheatSkip = false
     shared.creatures.clear()
+    shared.weights.clear()
+    shared.rooms.foreach {roomRow =>
+      roomRow.foreach {room =>
+        room.cooldown = true
+      }
+    }
     units.foreach(_.onExit())
   }
 

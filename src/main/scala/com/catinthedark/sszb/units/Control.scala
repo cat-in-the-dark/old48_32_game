@@ -19,18 +19,20 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
   def canUseRoom(x: Int, y: Int): Boolean = shared.rooms(x)(y).bought && !shared.rooms(x)(y).broken
 
   def shootFrom(room: Room) = {
-    println("BUM")
-    val (x, y) = currentRoom
-    shared.weights += (room match {
-      case _: PotRoom =>
+    if (room.cooldown) {
+      println("BUM")
+      val (x, y) = currentRoom
+      shared.weights += (room match {
+        case _: PotRoom =>
         Pot(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
-      case _: TVRoom =>
+        case _: TVRoom =>
         TV(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
-      case _: RoyalRoom =>
+        case _: RoyalRoom =>
         Royal(y * 128 + 128, x * 128 + 256, Difficulty.weightSpeed)
-    })
-    room.cooldown = false
-    defer(room.cooldownTime, () => room.cooldown = true)
+      })
+      room.cooldown = false
+      defer(room.cooldownTime, () => room.cooldown = true)
+    }
   }
 
   override def onActivate(): Unit = {
