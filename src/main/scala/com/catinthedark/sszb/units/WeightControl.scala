@@ -27,9 +27,14 @@ class WeightControl(shared: Shared) extends SimpleUnit {
     shared.weights --= shared.weights.filter { w =>
       if (w.y < UI.groundLevel) {
         w match {
-          case _: Pot => Assets.Audios.potDestroy.play()
-          case _: TV => Assets.Audios.tvDestroy.play()
-          case _: Royal => Assets.Audios.royalDeploy.play()
+          case _: Pot =>
+            Assets.Audios.potDestroy.play()
+          case t: TV =>
+            Assets.Audios.tvDestroy.play()
+            shared.animations += new AnimationWrapper(Assets.Animations.tvCrash, t.x - 34, t.y)
+          case r: Royal =>
+            Assets.Audios.royalDeploy.play()
+            shared.animations += new AnimationWrapper(Assets.Animations.royalCrash, r.x - 30, r.y)
         }
         true
       } else false
