@@ -138,7 +138,7 @@ object Const {
 
   object Physics {
     val blockSize = new Vector2(1f, 1f)
-    val clubXPos = 1100
+    val clubXPos = 1010
     val clubYPos = 100
   }
 
