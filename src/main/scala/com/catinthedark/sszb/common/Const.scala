@@ -3,6 +3,8 @@ package com.catinthedark.sszb.common
 import com.badlogic.gdx.math.{Rectangle, Vector2}
 import com.catinthedark.sszb.entity.{Whore, Hooligan, Creature}
 
+import scala.util.Random
+
 /**
  * Created by over on 03.01.15.
  */
@@ -28,12 +30,12 @@ object Const {
     val animationFastSpeed = 0.1f
     val animationSpeed = 0.2f
 
-    val potWidth = 32f
-    val tvWidth = 64f
-    val royalwWidth = 92f
+    val potWidth = 48f
+    val tvWidth = 92f
+    val royalwWidth = 128f
 
-    val hooliganWidth = 92f
-    val whoreWidth = 64f
+    val hooliganWidth = 128f
+    val whoreWidth = 92f
 
     val hitL0Level = 192f
     val hitL1Level = 128f
@@ -45,16 +47,22 @@ object Const {
     val tvRoomCooldown = 2f
     val royalRoomCooldown = 3f
     val hooliganSpeed = 75
+    val r = new Random()
+
     def hooliganCooldown(lvl: Int): Float = {
       lvl match {
         case 1 => 4f
-        case 2 => 3f
-        case _ => 2f
+        case 2 => 4f
+        case _ => (2 + r.nextInt(3)).toFloat
       }
     }
     val whoreSpeed = 150
     def whoreCooldown(lvl: Int) = {
-      5
+      lvl match {
+        case 1 => (4 + r.nextInt(4)).toFloat
+        case 2 => (3 + r.nextInt(4)).toFloat
+        case _ => (2 + r.nextInt(6)).toFloat
+      }
     }
 
     val flashStartAlpha = 1f
@@ -120,7 +128,7 @@ object Const {
         case 2 => 2f
         case 3 => 1.8f
         case 4 => 1.8f
-        case _ => 1.5f
+        case _ => 1f
       }
     }
 
