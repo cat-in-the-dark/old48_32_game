@@ -44,7 +44,16 @@ class WeightControl(shared: Shared) extends SimpleUnit {
       if (weight.y < UI.hitL0Level) {
         if (oneLevelHitTest) {
           shared.creatures --= shared.creatures.filter { creature: Creature =>
-            ((weight.x - weightWidth / 2) < creature.x) && (creature.x < (weight.x + weightWidth / 2) && (creature.roadNumber == 1))
+            if (((weight.x - weightWidth / 2) < creature.x) && (creature.x < (weight.x + weightWidth / 2) && (creature.roadNumber == 1))) {
+              creature match {
+                case h: Hooligan =>
+                  shared.animations += new AnimationWrapper(Assets.Animations.hooliganDia, h.x, h.roadNumber * 128)
+                case w: Whore =>
+                  shared.animations += new AnimationWrapper(Assets.Animations.whoreDie, w.x, w.roadNumber * 128)
+                case _ =>
+              }
+              true
+            } else false
           }
         }
       }
