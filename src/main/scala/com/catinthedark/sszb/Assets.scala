@@ -117,6 +117,16 @@ object Assets {
     val potDestroy = Gdx.audio.newSound(Gdx.files.internal("sound/pot_destroy.mp3"))
     val royalDeploy = Gdx.audio.newSound(Gdx.files.internal("sound/royal_deploy.mp3"))
     val tvDestroy = Gdx.audio.newSound(Gdx.files.internal("sound/tv_destroy.mp3"))
+    val bgmCool = Gdx.audio.newMusic(Gdx.files.internal("sound/bgm_cool.mp3"))
+    bgmCool.setLooping(true)
+
+    val bgmCrickets = Gdx.audio.newMusic(Gdx.files.internal("sound/crickets.mp3"))
+    bgmCrickets.setVolume(0.2f)
+    bgmCrickets.setLooping(true)
+
+    val bgmBirds = Gdx.audio.newMusic(Gdx.files.internal("sound/birds.mp3"))
+    bgmBirds.setVolume(0.2f)
+    bgmBirds.setLooping(true)
   }
 
 }

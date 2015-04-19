@@ -87,6 +87,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
 
   override def onActivate(): Unit = {
     Assets.Audios.roundEnd.play()
+    Assets.Audios.bgmBirds.play()
     Gdx.input.setInputProcessor(new InputAdapter {
       override def keyDown(keycode: Int): Boolean = {
         val (x, y) = currentRoom
@@ -117,7 +118,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   val batch = new SpriteBatch
 
   override def onExit(): Unit = {
-
+    Assets.Audios.bgmBirds.stop()
   }
 
   def render(): Unit = {

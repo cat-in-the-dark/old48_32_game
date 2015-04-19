@@ -2,7 +2,7 @@ package com.catinthedark.sszb.units
 
 
 import com.badlogic.gdx.{Gdx, Input, InputAdapter}
-import com.catinthedark.sszb.Shared
+import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity._

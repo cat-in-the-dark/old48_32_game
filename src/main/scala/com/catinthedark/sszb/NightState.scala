@@ -42,6 +42,8 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
 
     units = Seq(control, view, ai, aiControl, bulletControl, weightsControl, looseControl)
 
+    Assets.Audios.bgmCrickets.play()
+
     shared.lvlTime = 0f
     units.foreach(_.onActivate())
   }
@@ -57,6 +59,11 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
       }
     }
     shared.bullets.clear()
+    if (Assets.Audios.bgmCool.isPlaying)
+      Assets.Audios.bgmCool.stop()
+
+    if (Assets.Audios.bgmCrickets.isPlaying)
+      Assets.Audios.bgmCrickets.stop()
     units.foreach(_.onExit())
   }
 

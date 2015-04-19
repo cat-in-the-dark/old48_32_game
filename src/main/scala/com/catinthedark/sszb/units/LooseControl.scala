@@ -1,6 +1,6 @@
 package com.catinthedark.sszb.units
 
-import com.catinthedark.sszb.Shared
+import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.lib.SimpleUnit
 
@@ -17,5 +17,12 @@ class LooseControl(shared: Shared) extends SimpleUnit {
       shared.hits = 5
 
     shared.creatures --= missed
+    if (missed.length != 0) {
+      if (Assets.Audios.bgmCool.isPlaying) {
+        Assets.Audios.bgmCool.pause()
+      }
+      Assets.Audios.bgmCool.setVolume(0.2f * shared.hits)
+      Assets.Audios.bgmCool.play()
+    }
   }
 }
