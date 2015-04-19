@@ -24,6 +24,7 @@ class Shared(var rooms: Array[Array[Room]],
   def reset() = {
     money = Difficulty.startMoney
     lvl = 1
+    isClubBought = false
     hits = 0
     rooms = RenderFactory.createHouse()
     creatures.clear()
