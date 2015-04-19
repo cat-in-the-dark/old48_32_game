@@ -36,8 +36,13 @@ object Const {
     val potRoomCooldown = 1f
     val tvRoomCooldown = 2f
     val royalRoomCooldown = 3f
-    val whoreSpeed = 150
     val hooliganSpeed = 75
+    val hooliganCooldown = 3
+    val whoreSpeed = 150
+    val whoreCooldown = 5
+
+    val flashStartAlpha = 0.9f
+    val flashSpeed = 0.3f
 
     val hooliganHealth = 1
     val whoreHealth = 1

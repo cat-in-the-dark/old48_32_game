@@ -9,6 +9,7 @@ import scala.util.Random
  */
 object Creatures {
   val rand = new Random
+
   def randomCreature(roadNumber: Int, x: Int): Creature = {
     rand.nextInt(2) match {
       case 0 => new Whore(roadNumber, x)
@@ -23,17 +24,20 @@ sealed trait Creature {
   var speed: Int
 }
 
-case class Whore( var roadNumber: Int,
-                  var x: Float,
-                  var health: Int = Const.Difficulty.whoreHealth,
-                  var speed: Int = Const.Difficulty.whoreSpeed)
+case class Whore(var roadNumber: Int,
+                 var x: Float,
+                 var health: Int = Const.Difficulty.whoreHealth,
+                 var speed: Int = Const.Difficulty.whoreSpeed,
+                 var cooldown: Boolean = true,
+                 var attacking: Boolean = false,
+                 var stateTime: Float = 0f)
   extends Creature
 
-case class Hooligan( var roadNumber: Int,
-                     var x: Float,
-                     var health: Int = Const.Difficulty.hooliganHealth,
-                     var speed: Int = Const.Difficulty.hooliganSpeed,
-                     var cooldown: Boolean = true,
-                     var attacking: Boolean = false,
-                     var stateTime: Float = 0f)
+case class Hooligan(var roadNumber: Int,
+                    var x: Float,
+                    var health: Int = Const.Difficulty.hooliganHealth,
+                    var speed: Int = Const.Difficulty.hooliganSpeed,
+                    var cooldown: Boolean = true,
+                    var attacking: Boolean = false,
+                    var stateTime: Float = 0f)
   extends Creature

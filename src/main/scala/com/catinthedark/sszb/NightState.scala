@@ -37,6 +37,7 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     }
 
     val aiControl = new AIControl(shared) with LocalDeferred
+    aiControl.onSelfie + (_ => view.makeSelfie = true)
     val weightsControl = new WeightControl(shared)
     val looseControl = new LooseControl(shared)
 

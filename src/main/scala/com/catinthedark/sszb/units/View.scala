@@ -1,7 +1,7 @@
 package com.catinthedark.sszb.units
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.graphics.{Color, GL20}
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Matrix4
 import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.{Shared, Assets}
 import com.catinthedark.sszb.Assets.{Animations, Textures}
-import com.catinthedark.sszb.common.Const.UI
+import com.catinthedark.sszb.common.Const.{Difficulty, UI}
 import com.catinthedark.sszb.lib.Magic._
 import com.catinthedark.sszb.lib._
 
@@ -20,11 +20,14 @@ import com.catinthedark.sszb.lib._
 abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
 
   var currentRoom = shared.currentRoom
+  var makeSelfie = false
 
   val hudLayer = new Layer {
 
     val hudBatch = new SpriteBatch
     hudBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
+
+    var flashAlpha = Difficulty.flashStartAlpha
 
     override def render(delta: Float): Unit = {
       hudBatch.managed { self =>
@@ -34,6 +37,24 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         Assets.Fonts.moneyBackFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
         Assets.Fonts.moneyFrontFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x + 3, UI.moneyPos.y + 3)
         Assets.Fonts.moneyFrontFont.draw(self, s"time:${(Const.Timing.levelTime - shared.lvlTime).toLong}", UI.timePos.x + 3, UI.timePos.y + 3)
+      }
+
+      if (makeSelfie) {
+        Gdx.gl.glEnable(GL20.GL_BLEND)
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA)
+        println("selfie")
+        val shapeRenderer = new ShapeRenderer
+        shapeRenderer.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
+        shapeRenderer.begin(ShapeType.Filled)
+        shapeRenderer.setColor(1, 1, 1, flashAlpha)
+        shapeRenderer.rect(0, 0, 1366, 768)
+        shapeRenderer.end()
+        Gdx.gl.glDisable(GL20.GL_BLEND)
+        flashAlpha += -1 * Difficulty.flashSpeed * delta
+        if (flashAlpha <= 0) {
+          flashAlpha = Difficulty.flashStartAlpha
+          makeSelfie = false
+        }
       }
 
     }

@@ -2,13 +2,15 @@ package com.catinthedark.sszb.units
 
 import com.catinthedark.sszb.Shared
 import com.catinthedark.sszb.common.Const.Difficulty
-import com.catinthedark.sszb.entity.{Room, Bottle, Hooligan}
-import com.catinthedark.sszb.lib.{Deferred, SimpleUnit}
+import com.catinthedark.sszb.entity.{Whore, Room, Bottle, Hooligan}
+import com.catinthedark.sszb.lib.{Pipe, Deferred, SimpleUnit}
 
 import scala.collection.mutable.ListBuffer
 import scala.util.Random
 
 abstract class AIControl(shared: Shared) extends SimpleUnit with Deferred {
+
+  val onSelfie = new Pipe[Boolean]
 
   override def run(delta: Float): Unit = {
     shared.creatures.foreach {
@@ -17,7 +19,13 @@ abstract class AIControl(shared: Shared) extends SimpleUnit with Deferred {
         h.attacking = true
         h.stateTime = 0f
         shoot(h)
-        defer(2, () => h.cooldown = true)
+        defer(Difficulty.hooliganCooldown, () => h.cooldown = true)
+      case w: Whore if w.cooldown =>
+        w.cooldown = false
+        w.attacking = true
+        w.stateTime = 0f
+        selfie(w)
+        defer(Difficulty.whoreCooldown, () => w.cooldown = true)
       case c => c.x += c.speed * delta
     }
   }
@@ -42,5 +50,9 @@ abstract class AIControl(shared: Shared) extends SimpleUnit with Deferred {
 
       shared.bullets += new Bottle(h.x, h.roadNumber * 128, targetRoom, targetRoomCenterX, targetRoomCenterY, Difficulty.bottleSpeed)
     }
+  }
+
+  def selfie(w: Whore): Unit = {
+    onSelfie(true)
   }
 }
