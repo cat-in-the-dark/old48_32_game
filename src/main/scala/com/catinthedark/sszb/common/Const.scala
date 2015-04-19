@@ -20,6 +20,7 @@ object Const {
     val hudPos = new Vector2(961, 699)
     val moneyPos = new Vector2(1150, 655)
     val timePos = new Vector2(1150, 620)
+    val lvlPos = new Vector2(1150, 585)
 
     val animationSpeed = 0.2f
 
