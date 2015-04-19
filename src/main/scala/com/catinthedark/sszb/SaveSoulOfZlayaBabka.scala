@@ -39,7 +39,14 @@ class SaveSoulOfZlayaBabka extends Game {
     val t3 = keyAwait("Tutorial3", Assets.Textures.t3)
     val t4 = keyAwait("Tutorial4", Assets.Textures.t4)
 
-    val shared: Shared = new Shared(RenderFactory.createHouse(), mutable.ListBuffer(), mutable.ListBuffer(), 1, 0, Const.Difficulty.startMoney)
+    val shared: Shared = new Shared(
+      RenderFactory.createHouse(),
+      mutable.ListBuffer(),
+      mutable.ListBuffer(),
+      1, 0, 0,
+      Const.Difficulty.startMoney
+    )
+
     val night = new NightState(shared)
     val day = new DayState(shared)
 

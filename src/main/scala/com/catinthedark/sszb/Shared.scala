@@ -11,5 +11,6 @@ class Shared(var rooms: Array[Array[Room]],
              val creatures: mutable.ListBuffer[Creature],
              val weights: mutable.ListBuffer[Weight],
              var lvl: Int,
+             var lvlTime: Float,
              var hits: Int,
              var money: Int)

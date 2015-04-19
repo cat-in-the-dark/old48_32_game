@@ -76,6 +76,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   override def toString = "Day"
 
   override def onActivate(): Unit = {
+    Assets.Audios.roundEnd.play()
     Gdx.input.setInputProcessor(new InputAdapter {
       override def keyDown(keycode: Int): Boolean = {
         val (x, y) = currentRoom

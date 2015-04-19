@@ -9,7 +9,6 @@ import com.catinthedark.sszb.lib.SimpleUnit
  */
 class LooseControl(shared: Shared) extends SimpleUnit {
   override def run(delta: Float): Unit = {
-    val nCreature = shared.creatures.length
     val missed = shared.creatures.filter { c =>
       c.x > Const.Physics.clubXPos
     }

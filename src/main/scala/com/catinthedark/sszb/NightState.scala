@@ -17,7 +17,6 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
   override def toString = "Game"
 
   var units: Seq[SimpleUnit] = Seq()
-  var time = 0f
 
   var paused = false
   var cheatSkip = false
@@ -41,7 +40,7 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
 
     units = Seq(control, view, ai, aiControl, weightsControl, looseControl)
 
-    time = 0f
+    shared.lvlTime = 0f
     units.foreach(_.onActivate())
   }
 
@@ -49,8 +48,8 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
     cheatSkip = false
     shared.creatures.clear()
     shared.weights.clear()
-    shared.rooms.foreach {roomRow =>
-      roomRow.foreach {room =>
+    shared.rooms.foreach { roomRow =>
+      roomRow.foreach { room =>
         room.cooldown = true
       }
     }
@@ -59,11 +58,11 @@ class NightState(shared: Shared) extends YieldUnit[Boolean] {
 
   override def run(delta: Float): Option[Boolean] = {
     units.foreach(_.run(delta))
-    time += delta
+    shared.lvlTime += delta
 
     if (cheatSkip) return Some(true)
 
-    if (time > Timing.levelTime)
+    if (shared.lvlTime > Timing.levelTime)
       Some(true)
     else if (shared.hits >= 5) {
       Some(false)
