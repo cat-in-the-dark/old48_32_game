@@ -6,9 +6,9 @@ Definitely I'll stop it throwing away from window flower pots, tv-sets, pianos o
 
 In day mode you can buy "weapon", in night mode you fight with enemies.
 
-![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/tutor_1.gif)
-![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/tutor_2.gif)
-![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/tutor_3.gif)
+![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/textures/tutor_1.gif)
+![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/textures/tutor_2.gif)
+![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/textures/tutor_3.gif)
 
 ## Controls
 
@@ -26,4 +26,4 @@ In day mode you can buy "weapon", in night mode you fight with enemies.
 
 ## From Siberia with love by [CAT_IN_THE_DARK](https://github.com/cat-in-the-dark)
 
-![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/gamewin.gif)
+![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/textures/gamewin.gif)
