@@ -144,6 +144,7 @@ object Const {
 
   object Timing {
     val levelTime = 30f
+    val selfieDelay = 0.5f
   }
 
   object Ints {

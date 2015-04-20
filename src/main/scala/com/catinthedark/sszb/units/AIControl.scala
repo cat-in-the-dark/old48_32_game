@@ -1,5 +1,6 @@
 package com.catinthedark.sszb.units
 
+import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{Whore, Room, Bottle, Hooligan}
@@ -67,7 +68,7 @@ abstract class AIControl(shared: Shared) extends SimpleUnit with Deferred {
     Assets.Audios.selfie.play()
     //only first 2 affected
     if (shared.currentRoom._1 != 2) {
-      onSelfie(true)
+      defer(Const.Timing.selfieDelay, () => onSelfie(true))
     }
   }
 }
