@@ -137,6 +137,7 @@ object Assets {
     val tvDestroy = Gdx.audio.newSound(Gdx.files.internal("sound/tv_destroy.mp3"))
     val wndDestroy = Gdx.audio.newSound(Gdx.files.internal("sound/window_broken.mp3"))
     val selfie = Gdx.audio.newSound(Gdx.files.internal("sound/selfie.mp3"))
+    val iron = Gdx.audio.newSound(Gdx.files.internal("sound/iron.mp3"))
 
     val bgmCool = Gdx.audio.newMusic(Gdx.files.internal("sound/bgm_cool.mp3"))
     bgmCool.setLooping(true)

@@ -25,6 +25,7 @@ class BulletControl(shared: Shared) extends SimpleUnit {
           true
         } else if (bullet.targetRoom.grate) {
           bullet.targetRoom.grateLives += -1
+          Assets.Audios.iron.play()
           if (bullet.targetRoom.grateLives <= 0) {
             bullet.targetRoom.grateLives = Difficulty.grateLives
             bullet.targetRoom.grate = false
