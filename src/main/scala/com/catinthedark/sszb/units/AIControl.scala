@@ -32,6 +32,7 @@ abstract class AIControl(shared: Shared) extends SimpleUnit with Deferred {
 
   def shoot(h: Hooligan): Unit = {
 
+    var prefferedRooms = new ListBuffer[Room]
     var targetRooms = new ListBuffer[Room]
 
     shared.rooms.foreach { roomRow =>
@@ -39,10 +40,20 @@ abstract class AIControl(shared: Shared) extends SimpleUnit with Deferred {
         room.bought && !room.broken
       }.foreach { targetRoom =>
         targetRooms += targetRoom
+        if (targetRoom.grate) {
+          prefferedRooms += targetRoom
+        }
       }
     }
 
-    if (targetRooms.length > 0) {
+    if (prefferedRooms.length > 0) {
+      val random = new Random
+      val prefferedRoom = prefferedRooms(random.nextInt(prefferedRooms.length))
+      val targetRoomCenterX = prefferedRoom.x * 128 + 192
+      val targetRoomCenterY = prefferedRoom.y * 128 + 320
+
+      shared.bullets += new Bottle(h.x, h.roadNumber * 128, prefferedRoom, targetRoomCenterX, targetRoomCenterY, Difficulty.bottleSpeed)
+    } else if (targetRooms.length > 0) {
       val random = new Random
       val targetRoom = targetRooms(random.nextInt(targetRooms.length))
       val targetRoomCenterX = targetRoom.x * 128 + 192
