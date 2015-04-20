@@ -35,7 +35,7 @@ class SaveSoulOfZlayaBabka extends Game {
     val t1 = keyAwait("Tutorial1", Assets.Textures.t1)
     val t2 = keyAwait("Tutorial2", Assets.Textures.t2)
     val t3 = keyAwait("Tutorial3", Assets.Textures.t3)
-    //val t4 = keyAwait("Tutorial4", Assets.Textures.t4)
+    val t4 = keyAwait("Tutorial4", Assets.Textures.t4)
 
     val shared: Shared = new Shared(
       RenderFactory.createHouse(),
@@ -57,8 +57,8 @@ class SaveSoulOfZlayaBabka extends Game {
     rm.addRoute(logo, anyway => t1)
     rm.addRoute(t1, anyway => t2)
     rm.addRoute(t2, anyway => t3)
-    rm.addRoute(t3, anyway => night)
-//    rm.addRoute(t4, anyway => night)
+    rm.addRoute(t3, anyway => t4)
+    rm.addRoute(t4, anyway => night)
     rm.addRoute(night, res => {
       res match {
         case true => day
@@ -84,8 +84,5 @@ class SaveSoulOfZlayaBabka extends Game {
 
   override def render() = {
     rm.run(Gdx.graphics.getDeltaTime)
-    //println(Const.Ints.i)
-    //import com.catinthedark.savemedad.common.Const.Strings.str
-    //println(str)
   }
 }

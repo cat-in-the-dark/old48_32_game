@@ -6,6 +6,10 @@ Definitely I'll stop it throwing away from window flower pots, tv-sets, pianos o
 
 In day mode you can buy "weapon", in night mode you fight with enemies.
 
+![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/tutor_1.gif)
+![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/tutor_2.gif)
+![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/tutor_3.gif)
+
 ## Controls
 
 - Arrows - walk/move in the windows
@@ -21,3 +25,5 @@ In day mode you can buy "weapon", in night mode you fight with enemies.
 - Platform: Cross platform, required java runtime environment(jre). [download jre](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) 
 
 ## From Siberia with love by [CAT_IN_THE_DARK](https://github.com/cat-in-the-dark)
+
+![](https://raw.githubusercontent.com/cat-in-the-dark/old48_32_game/master/assets/gamewin.gif)
