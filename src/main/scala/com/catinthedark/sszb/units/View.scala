@@ -96,7 +96,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         for (i <- 0 to shared.rooms.length - 1;
              j <- 0 to shared.rooms(0).length - 1) {
           val room = shared.rooms(i)(j)
-          if (!room.broken && room.armed)
+          if (!room.broken && room.armed && room.cooldown)
             room match {
               case r: PotRoom =>
                 self.draw(Assets.Textures.wndBackPot, j * 128 + 128 + 55, i * 128 + 256 + 30)
