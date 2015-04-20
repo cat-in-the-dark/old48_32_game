@@ -46,8 +46,12 @@ object Const {
     val potRoomCooldown = 1f
     val tvRoomCooldown = 2f
     val royalRoomCooldown = 3f
-    val hooliganSpeed = 75
+
     val r = new Random()
+
+    def hooliganSpeed(lvl: Int): Int = {
+      65 + lvl * 10 + r.nextInt(lvl * 10)
+    }
 
     def hooliganCooldown(lvl: Int): Float = {
       lvl match {
@@ -56,6 +60,11 @@ object Const {
         case _ => (2 + r.nextInt(3)).toFloat
       }
     }
+
+    def whoreSpeed(lvl: Int): Int = {
+      130 + lvl * 10 + r.nextInt(lvl * 20)
+    }
+
     val whoreSpeed = 150
     def whoreCooldown(lvl: Int) = {
       lvl match {
@@ -78,6 +87,7 @@ object Const {
     val cheapRoom = 1
     val normalRoom = 2
     val richRoom = 3
+    val enourmoslyRichroom = 4
 
     val grateMul = 15
     val repairMul = 5

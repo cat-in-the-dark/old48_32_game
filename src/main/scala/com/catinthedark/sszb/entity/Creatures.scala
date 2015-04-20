@@ -1,7 +1,8 @@
 package com.catinthedark.sszb.entity
 
+import com.catinthedark.sszb.Shared
 import com.catinthedark.sszb.common.Const
-import com.catinthedark.sszb.common.Const.UI
+import com.catinthedark.sszb.common.Const.{Difficulty, UI}
 
 import scala.util.Random
 
@@ -11,10 +12,10 @@ import scala.util.Random
 object Creatures {
   val rand = new Random
 
-  def randomCreature(roadNumber: Int, x: Int): Creature = {
+  def randomCreature(shared: Shared, roadNumber: Int, x: Int): Creature = {
     rand.nextInt(2) match {
-      case 0 => new Whore(roadNumber, x, UI.whoreWidth)
-      case 1 => new Hooligan(roadNumber, x, UI.hooliganWidth)
+      case 0 => new Whore(roadNumber, x, UI.whoreWidth, Difficulty.whoreSpeed(shared.lvl))
+      case 1 => new Hooligan(roadNumber, x, UI.hooliganWidth, Const.Difficulty.hooliganSpeed(shared.lvl))
     }
   }
 }
@@ -30,8 +31,8 @@ sealed trait Creature {
 case class Whore(var roadNumber: Int,
                  var x: Float,
                  var width: Float,
+                 var speed: Int,
                  var health: Int = Const.Difficulty.whoreHealth,
-                 var speed: Int = Const.Difficulty.whoreSpeed,
                  var cooldown: Boolean = false,
                  var attacking: Boolean = false,
                  var stateTime: Float = 0f)
@@ -40,8 +41,8 @@ case class Whore(var roadNumber: Int,
 case class Hooligan(var roadNumber: Int,
                     var x: Float,
                     var width: Float,
+                    var speed: Int,
                     var health: Int = Const.Difficulty.hooliganHealth,
-                    var speed: Int = Const.Difficulty.hooliganSpeed,
                     var cooldown: Boolean = false,
                     var attacking: Boolean = false,
                     var stateTime: Float = 0f)

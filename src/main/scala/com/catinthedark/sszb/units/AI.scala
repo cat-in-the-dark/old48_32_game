@@ -17,7 +17,7 @@ abstract class AI(shared: Shared) extends SimpleUnit with Deferred{
     val seed = rand.nextInt() % Difficulty.seedDivider
     val (needZ0, needZ1) = Difficulty.spawnRandom(shared.lvl, seed)
     if (needZ0) {
-      var c = Creatures.randomCreature(0, 0)
+      var c = Creatures.randomCreature(shared, 0, 0)
       c match {
         case h: Hooligan => defer(Difficulty.hooliganCooldown(shared.lvl), () => h.cooldown = true)
         case w: Whore => defer(Difficulty.whoreCooldown(shared.lvl), () => w.cooldown = true)
@@ -25,7 +25,7 @@ abstract class AI(shared: Shared) extends SimpleUnit with Deferred{
       shared.creatures += c
     }
     if (needZ1) {
-      var c = Creatures.randomCreature(1, 0)
+      var c = Creatures.randomCreature(shared, 1, 0)
       c match {
         case h: Hooligan => defer(Difficulty.hooliganCooldown(shared.lvl), () => h.cooldown = true)
         case w: Whore => defer(Difficulty.whoreCooldown(shared.lvl), () => w.cooldown = true)
