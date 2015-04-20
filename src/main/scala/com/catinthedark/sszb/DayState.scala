@@ -123,7 +123,9 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     shared.lvl += 1
   }
 
-  def render(): Unit = {
+  var frameKF = 0f
+
+  def render(delta: Float): Unit = {
     batch.managed { self =>
       self.draw(Textures.bgDay, 0, 0)
       self.draw(Textures.clublightDay, Const.Physics.clubXPos, Const.Physics.clubYPos)
@@ -167,7 +169,8 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
 
       //Bye/Repair
       val (x, y) = currentRoom
-      self.draw(Textures.frame, y * 128 + 128, x * 128 + 256)
+      self.draw(Assets.Animations.frame.getKeyFrame(frameKF), y * 128 + 128, x * 128 + 256)
+      frameKF += delta
       val room = shared.rooms(x)(y)
       if (!room.bought) {
         self.draw(Textures.shopBye, 0, 0)
@@ -227,7 +230,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   }
 
   override def run(delta: Float): Option[Boolean] = {
-    render()
+    render(delta)
     if (Gdx.input.isKeyPressed(Input.Keys.ENTER) || shared.isClubBought)
       Some(shared.isClubBought)
     else

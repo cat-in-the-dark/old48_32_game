@@ -27,7 +27,8 @@ object Assets {
     val hudFront = new Texture(Gdx.files.internal("textures/hud_front.png"))
     val bg = new Texture(Gdx.files.internal("textures/bg_night.gif"))
     val bgDay = new Texture(Gdx.files.internal("textures/bg_day.gif"))
-    val frame = new Texture(Gdx.files.internal("textures/frame.png"))
+    val frameTexture = TextureRegion.split(
+      new Texture(Gdx.files.internal("textures/frame.png")), 138, 138)
 
     val wndDayNotBought = new Texture(Gdx.files.internal("textures/window_day_disabled.gif"))
     val wndDayNormal = new Texture(Gdx.files.internal("textures/window_normal_day.gif"))
@@ -128,6 +129,8 @@ object Assets {
     val club = loopingAnimation(Textures.clublightFrames,
       (0, 0), (0, 1))
     club.setFrameDuration(0.6f)
+    val frame = loopingAnimation(Textures.frameTexture, (0, 0), (0, 1))
+    frame.setFrameDuration(0.1f)
   }
 
   object Audios {
