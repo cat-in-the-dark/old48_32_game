@@ -8,18 +8,24 @@ import com.catinthedark.sszb.lib.SimpleUnit
 
 import scala.collection.mutable.ListBuffer
 import scala.runtime.FloatRef
+import scala.util.Random
 
 /**
  * Created by kirill on 19.04.15.
  */
 class WeightControl(shared: Shared) extends SimpleUnit {
+
+  val r = new Random()
+
   def killHooligan(x: Float, y: Float) = {
     shared.animations += new AnimationWrapper(Assets.Animations.hooliganDia, x, y)
+    shared.textures += new TextureWrapper(Assets.Textures.cash, x, y - 10 + r.nextInt(20))
     shared.money += Const.Difficulty.hooliganPrice
   }
 
   def killWhore(x: Float, y: Float) = {
     shared.animations += new AnimationWrapper(Assets.Animations.whoreDie, x, y)
+    shared.textures += new TextureWrapper(Assets.Textures.cash, x, y - 10 + r.nextInt(20))
     shared.money += Const.Difficulty.whorePrice
   }
 

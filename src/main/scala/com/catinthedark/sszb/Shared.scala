@@ -2,7 +2,7 @@ package com.catinthedark.sszb
 
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.common.Const.Difficulty
-import com.catinthedark.sszb.entity.{AnimationWrapper, Bullet, Creature, Room, Weight}
+import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.units.RenderFactory
 
 import scala.collection.mutable
@@ -14,6 +14,7 @@ class Shared(var rooms: Array[Array[Room]],
              val creatures: mutable.ListBuffer[Creature],
              val weights: mutable.ListBuffer[Weight],
              val animations: mutable.ListBuffer[AnimationWrapper],
+             val textures: mutable.ListBuffer[TextureWrapper],
              val bullets: mutable.ListBuffer[Bullet],
              var lvl: Int,
              var lvlTime: Float,
@@ -29,6 +30,7 @@ class Shared(var rooms: Array[Array[Room]],
     rooms = RenderFactory.createHouse()
     creatures.clear()
     weights.clear()
+    textures.clear()
     currentRoom = Const.Difficulty.firstRoom
   }
 }

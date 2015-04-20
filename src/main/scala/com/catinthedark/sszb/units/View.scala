@@ -173,6 +173,11 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
           }
           self.draw(Textures.babkaHandsUp, y * 128 + 128 + 23, x * 128 + 256 + 30)
         }
+
+        shared.textures.foreach({ texture =>
+          self.draw(texture.texture, texture.x, texture.y)
+        })
+
         shared.creatures.filter { c =>
           c.roadNumber == 1
         }.foreach { c =>

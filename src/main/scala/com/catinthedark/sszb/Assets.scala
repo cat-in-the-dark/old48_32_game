@@ -25,6 +25,7 @@ object Assets {
     val hudFront = new Texture(Gdx.files.internal("textures/hud_front.png"))
     val bg = new Texture(Gdx.files.internal("textures/bg_night.gif"))
     val bgDay = new Texture(Gdx.files.internal("textures/bg_day.gif"))
+    val cash = new Texture(Gdx.files.internal("textures/cash.gif"))
     val frameTexture = TextureRegion.split(
       new Texture(Gdx.files.internal("textures/frame.png")), 138, 138)
 
