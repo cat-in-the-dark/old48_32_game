@@ -1,12 +1,6 @@
 package com.catinthedark.sszb
 
-import java.awt.Dimension
-
 import com.badlogic.gdx.backends.lwjgl.{LwjglApplication, LwjglApplicationConfiguration}
-import com.catinthedark.sszb.common.Const
-import com.catinthedark.tweaker.{DoubleTweaker, IntTweaker}
-
-import scala.swing._
 
 /**
  * Created by over on 13.12.14.
