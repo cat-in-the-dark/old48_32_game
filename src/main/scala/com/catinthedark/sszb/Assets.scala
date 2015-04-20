@@ -126,7 +126,7 @@ object Assets {
       (0, 0), (0, 1))
     club.setFrameDuration(0.6f)
     val frame = loopingAnimation(Textures.frameTexture, (0, 0), (0, 1))
-    frame.setFrameDuration(0.1f)
+    frame.setFrameDuration(0.2f)
   }
 
   object Audios {
