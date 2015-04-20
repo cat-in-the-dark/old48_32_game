@@ -85,19 +85,17 @@ object Assets {
 
   object Fonts {
     val mainGenerator = new FreeTypeFontGenerator(Gdx.files.internal("font/main.ttf"))
-    var moneyFontParam = new FreeTypeFontParameter()
+    val moneyFontParam = new FreeTypeFontParameter()
     moneyFontParam.size = 44
-    var moneyBackFont = mainGenerator.generateFont(moneyFontParam)
-    moneyBackFont.setColor(25f / 255, 60f / 255, 40f / 255, 1)
-    var moneyFrontFont = mainGenerator.generateFont(moneyFontParam)
-    moneyFrontFont.setColor(54f / 255, 131f / 255, 87f / 255, 1)
+    val moneyFrontFont = mainGenerator.generateFont(moneyFontParam)
+    moneyFrontFont.setColor(167f / 255, 128f / 255, 183f / 255, 1)
 
-    var otherFontParam = new FreeTypeFontParameter()
+    val otherFontParam = new FreeTypeFontParameter()
     otherFontParam.size = 30
 
-    var greenFont = mainGenerator.generateFont(otherFontParam)
+    val greenFont = mainGenerator.generateFont(otherFontParam)
     greenFont.setColor(54f / 255, 131f / 255, 87f / 255, 1)
-    var redFont = mainGenerator.generateFont(otherFontParam)
+    val redFont = mainGenerator.generateFont(otherFontParam)
     redFont.setColor(255f / 255, 0f / 255, 0f / 255, 1)
   }
 
