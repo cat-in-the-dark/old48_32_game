@@ -19,7 +19,7 @@ abstract class AI(shared: Shared) extends SimpleUnit with Deferred{
     if (needZ0) {
       var c = Creatures.randomCreature(shared, 0, 0)
       c match {
-        case h: Hooligan => defer(Difficulty.hooliganCooldown(shared.lvl), () => h.cooldown = true)
+        case h: Hooligan => defer(Difficulty.hooliganCooldown(shared.lvl) / 2, () => h.cooldown = true)
         case w: Whore => defer(Difficulty.whoreCooldown(shared.lvl), () => w.cooldown = true)
       }
       shared.creatures += c
@@ -27,7 +27,7 @@ abstract class AI(shared: Shared) extends SimpleUnit with Deferred{
     if (needZ1) {
       var c = Creatures.randomCreature(shared, 1, 0)
       c match {
-        case h: Hooligan => defer(Difficulty.hooliganCooldown(shared.lvl), () => h.cooldown = true)
+        case h: Hooligan => defer(Difficulty.hooliganCooldown(shared.lvl) / 2, () => h.cooldown = true)
         case w: Whore => defer(Difficulty.whoreCooldown(shared.lvl), () => w.cooldown = true)
       }
       shared.creatures += c
