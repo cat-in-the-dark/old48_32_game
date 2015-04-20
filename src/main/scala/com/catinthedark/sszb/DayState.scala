@@ -134,15 +134,16 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
 
         val room = shared.rooms(i)(j)
 
-        room match {
-          case r: PotRoom if !r.broken =>
-            self.draw(Assets.Textures.wndBackPot, j * 128 + 128 + 55, i * 128 + 256 + 30)
-          case r: TVRoom if !r.broken =>
-            self.draw(Assets.Textures.wndBackTv, j * 128 + 128 + 50, i * 128 + 256 + 30)
-          case r: RoyalRoom if !r.broken =>
-            self.draw(Assets.Textures.wndBackRoyal, j * 128 + 128 + 60, i * 128 + 256 + 30)
-          case _ =>
-        }
+        if (!room.broken && room.armed)
+          room match {
+            case r: PotRoom =>
+              self.draw(Assets.Textures.wndBackPot, j * 128 + 128 + 55, i * 128 + 256 + 30)
+            case r: TVRoom =>
+              self.draw(Assets.Textures.wndBackTv, j * 128 + 128 + 50, i * 128 + 256 + 30)
+            case r: RoyalRoom =>
+              self.draw(Assets.Textures.wndBackRoyal, j * 128 + 128 + 60, i * 128 + 256 + 30)
+            case _ =>
+          }
 
         val bgTex = room match {
           case r: Room if !r.broken && r.bought =>

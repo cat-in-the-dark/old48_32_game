@@ -36,7 +36,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         self.draw(Assets.Textures.hudBack, UI.hudPos.x, UI.hudPos.y)
         self.draw(Assets.Textures.hud, UI.hudPos.x, UI.hudPos.y, 80 * shared.hits, 64, 0, 0, 80 * shared.hits, 64, false, false)
         self.draw(Assets.Textures.hudFront, UI.hudPos.x, UI.hudPos.y)
-        Assets.Fonts.moneyFrontFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y )
+        Assets.Fonts.moneyFrontFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
         Assets.Fonts.moneyFrontFont.draw(self, s"time:${(Const.Timing.levelTime - shared.lvlTime).toLong}", UI.timePos.x, UI.timePos.y)
         Assets.Fonts.moneyFrontFont.draw(self, s"lvl:${shared.lvl}", UI.lvlPos.x, UI.lvlPos.y)
       }
@@ -96,15 +96,16 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         for (i <- 0 to shared.rooms.length - 1;
              j <- 0 to shared.rooms(0).length - 1) {
           val room = shared.rooms(i)(j)
-          room match {
-            case r: PotRoom if !r.broken =>
-              self.draw(Assets.Textures.wndBackPot, j * 128 + 128 + 55, i * 128 + 256 + 30)
-            case r: TVRoom if !r.broken =>
-              self.draw(Assets.Textures.wndBackTv, j * 128 + 128 + 50, i * 128 + 256 + 30)
-            case r: RoyalRoom if !r.broken =>
-              self.draw(Assets.Textures.wndBackRoyal, j * 128 + 128 + 60, i * 128 + 256 + 30)
-            case _ =>
-          }
+          if (!room.broken && room.armed)
+            room match {
+              case r: PotRoom =>
+                self.draw(Assets.Textures.wndBackPot, j * 128 + 128 + 55, i * 128 + 256 + 30)
+              case r: TVRoom =>
+                self.draw(Assets.Textures.wndBackTv, j * 128 + 128 + 50, i * 128 + 256 + 30)
+              case r: RoyalRoom =>
+                self.draw(Assets.Textures.wndBackRoyal, j * 128 + 128 + 60, i * 128 + 256 + 30)
+              case _ =>
+            }
 
           val bgTex = room match {
             case r: Room if !r.broken && r.bought =>
@@ -172,15 +173,15 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
           }
           self.draw(Textures.babkaHandsUp, y * 128 + 128 + 23, x * 128 + 256 + 30)
         }
-        shared.creatures.filter{ c =>
+        shared.creatures.filter { c =>
           c.roadNumber == 1
-        }.foreach{ c =>
+        }.foreach { c =>
           drawCreatures(c)
         }
 
-        shared.creatures.filter{ c =>
+        shared.creatures.filter { c =>
           c.roadNumber == 0
-        }.foreach{ c =>
+        }.foreach { c =>
           drawCreatures(c)
         }
 
