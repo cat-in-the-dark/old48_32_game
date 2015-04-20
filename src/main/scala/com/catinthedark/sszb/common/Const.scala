@@ -55,14 +55,19 @@ object Const {
 
     def hooliganCooldown(lvl: Int): Float = {
       lvl match {
-        case 1 => 4f
-        case 2 => 4f
+        case 1 => 10f
+        case 2 => 5f
         case _ => (2 + r.nextInt(3)).toFloat
       }
     }
 
     def whoreSpeed(lvl: Int): Int = {
-      130 + lvl * 10 + r.nextInt(lvl * 20)
+      lvl match {
+        case 1 => 115
+        case 2 => 120
+        case 3 => 125
+        case _ => 100 + lvl * 10 + r.nextInt(lvl * 20)
+      }
     }
 
     val whoreSpeed = 150
