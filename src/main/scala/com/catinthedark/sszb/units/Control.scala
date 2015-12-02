@@ -6,7 +6,7 @@ import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity._
-import com.catinthedark.sszb.lib._
+import com.catinthedark.lib._
 
 /**
  * Created by over on 22.01.15.

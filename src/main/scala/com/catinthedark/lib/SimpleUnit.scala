@@ -1,4 +1,4 @@
-package com.catinthedark.sszb.lib
+package com.catinthedark.lib
 
 /**
  * Created by over on 12.03.15.

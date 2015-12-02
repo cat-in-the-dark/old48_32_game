@@ -2,7 +2,7 @@ package com.catinthedark.sszb.units
 
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const
-import com.catinthedark.sszb.lib.SimpleUnit
+import com.catinthedark.lib.SimpleUnit
 
 /**
  * Created by over on 19.04.15.

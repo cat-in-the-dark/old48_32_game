@@ -1,9 +1,9 @@
-package com.catinthedark.sszb.lib
+package com.catinthedark.lib
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.{GL20, Texture}
-import com.catinthedark.sszb.lib.Magic._
+import com.catinthedark.lib.Magic._
 
 /**
  * Created by over on 13.12.14.

@@ -4,7 +4,7 @@ import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const.UI
 import com.catinthedark.sszb.entity._
-import com.catinthedark.sszb.lib.SimpleUnit
+import com.catinthedark.lib.SimpleUnit
 
 import scala.collection.mutable.ListBuffer
 import scala.runtime.FloatRef

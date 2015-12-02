@@ -4,7 +4,7 @@ import com.badlogic.gdx.{InputAdapter, Input, Gdx}
 import com.catinthedark.sszb.common.Const.Timing
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{Room, Creature}
-import com.catinthedark.sszb.lib._
+import com.catinthedark.lib._
 import com.catinthedark.sszb.units._
 
 import scala.collection.mutable

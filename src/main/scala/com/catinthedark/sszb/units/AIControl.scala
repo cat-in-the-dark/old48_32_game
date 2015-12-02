@@ -4,7 +4,7 @@ import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{Whore, Room, Bottle, Hooligan}
-import com.catinthedark.sszb.lib.{Pipe, Deferred, SimpleUnit}
+import com.catinthedark.lib.{Pipe, Deferred, SimpleUnit}
 
 import scala.collection.mutable.ListBuffer
 import scala.util.Random

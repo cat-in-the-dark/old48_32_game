@@ -3,7 +3,7 @@ package com.catinthedark.sszb
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.{Game, Gdx, Input}
 import com.catinthedark.sszb.common.Const
-import com.catinthedark.sszb.lib._
+import com.catinthedark.lib._
 import com.catinthedark.sszb.units.RenderFactory
 
 import scala.collection.mutable

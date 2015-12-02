@@ -3,7 +3,7 @@ package com.catinthedark.sszb.units
 import com.catinthedark.sszb.Shared
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.{Whore, Creatures, Creature, Hooligan}
-import com.catinthedark.sszb.lib.{Deferred, Interval, SimpleUnit}
+import com.catinthedark.lib.{Deferred, Interval, SimpleUnit}
 
 import scala.util.Random
 

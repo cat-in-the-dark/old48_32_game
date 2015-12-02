@@ -1,4 +1,4 @@
-package com.catinthedark.sszb.lib.animation
+package com.catinthedark.lib.animation
 
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch

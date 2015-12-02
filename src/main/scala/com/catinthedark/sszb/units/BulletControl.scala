@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.MathUtils
 import com.catinthedark.sszb.{Assets, Shared}
 import com.catinthedark.sszb.common.Const.Difficulty
 import com.catinthedark.sszb.entity.Bullet
-import com.catinthedark.sszb.lib.SimpleUnit
+import com.catinthedark.lib.SimpleUnit
 
 /**
  * Created by kirill on 19.04.15.

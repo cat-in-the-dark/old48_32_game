@@ -11,8 +11,8 @@ import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.{Shared, Assets}
 import com.catinthedark.sszb.Assets.{Animations, Textures}
 import com.catinthedark.sszb.common.Const.{Difficulty, UI}
-import com.catinthedark.sszb.lib.Magic._
-import com.catinthedark.sszb.lib._
+import com.catinthedark.lib.Magic._
+import com.catinthedark.lib._
 
 /**
  * Created by over on 02.01.15.

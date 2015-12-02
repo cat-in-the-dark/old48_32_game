@@ -5,8 +5,8 @@ import com.badlogic.gdx.{InputAdapter, Input, Gdx}
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.common.Const.UI
 import com.catinthedark.sszb.entity.{RoyalRoom, TVRoom, PotRoom, Room}
-import com.catinthedark.sszb.lib.YieldUnit
-import com.catinthedark.sszb.lib.Magic._
+import com.catinthedark.lib.YieldUnit
+import com.catinthedark.lib.Magic._
 import Assets.Textures
 
 /**

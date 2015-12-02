@@ -1,4 +1,4 @@
-package com.catinthedark.sszb.lib
+package com.catinthedark.lib
 
 import com.badlogic.gdx.Gdx
 
