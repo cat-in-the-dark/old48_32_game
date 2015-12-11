@@ -31,8 +31,11 @@ object Const {
     val animationSpeed = 0.2f
 
     val potWidth = 48f
+    val potHeight = 64f
     val tvWidth = 92f
+    val tvHeight = 96f
     val royalwWidth = 128f
+    val royalHeight = 108f
 
     val hooliganWidth = 92f
     val whoreWidth = 88f

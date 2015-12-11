@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
 import com.catinthedark.sszb.common.Const
-import com.badlogic.gdx.math.{MathUtils, Matrix4}
+import com.badlogic.gdx.math.{Rectangle, MathUtils, Matrix4}
 import com.catinthedark.sszb.entity._
 import com.catinthedark.sszb.{Shared, Assets}
 import com.catinthedark.sszb.Assets.{Animations, Textures}
@@ -74,10 +74,10 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     bgBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
     val wndBatch = new SpriteBatch
     wndBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
-    val creaturesBatch = new SpriteBatch
+    val creaturesBatch = new MagicSpriteBatch
     creaturesBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
     var time = 0f
-    val weaponsBatch = new SpriteBatch
+    val weaponsBatch = new MagicSpriteBatch
     weaponsBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
 
     override def render(delta: Float): Unit = {
@@ -143,7 +143,8 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
                 Animations.whore
               }
               val y = if (w.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
-              self.draw(animation.getKeyFrame(w.stateTime), w.x, y)
+              val viewPos = new Rectangle(w.x, y, w.width, 128)
+              self.drawWithDebug(animation.getKeyFrame(w.stateTime), viewPos, viewPos)
               w.stateTime += delta
             case h: Hooligan =>
               val animation = if (h.attacking) {
@@ -156,7 +157,8 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
                 Animations.hooligan
               }
               val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
-              self.draw(animation.getKeyFrame(h.stateTime), h.x, y)
+              val viewPos = new Rectangle(h.x, y, h.width, 128)
+              self.drawWithDebug(animation.getKeyFrame(h.stateTime), viewPos, viewPos)
               h.stateTime += delta
             case _ =>
           }
@@ -201,11 +203,14 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
       weaponsBatch.managed { self =>
         shared.weights.foreach {
           case tv: TV =>
-            self.draw(Textures.tv, tv.x, tv.y)
+            val viewRect = new Rectangle(tv.x, tv.y, UI.tvWidth, UI.tvHeight)
+            self.drawWithDebug(Textures.tv, viewRect, viewRect)
           case pot: Pot =>
-            self.draw(Textures.pot, pot.x, pot.y)
+            val viewRect = new Rectangle(pot.x, pot.y, UI.potWidth, UI.potHeight)
+            self.drawWithDebug(Textures.pot, viewRect, viewRect)
           case royal: Royal =>
-            self.draw(Textures.royal, royal.x, royal.y)
+            val viewRect = new Rectangle(royal.x, royal.y, UI.royalwWidth, UI.royalHeight)
+            self.drawWithDebug(Textures.royal, viewRect, viewRect)
         }
         shared.bullets.foreach { bullet =>
           self.draw(Textures.bottle, bullet.x, bullet.y)
