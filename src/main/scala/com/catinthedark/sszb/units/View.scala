@@ -33,9 +33,9 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
 
     override def render(delta: Float): Unit = {
       hudBatch.managed { self =>
-        self.draw(Assets.Textures.hudBack, UI.hudPos.x, UI.hudPos.y)
-        self.draw(Assets.Textures.hud, UI.hudPos.x, UI.hudPos.y, 80 * shared.hits, 64, 0, 0, 80 * shared.hits, 64, false, false)
-        self.draw(Assets.Textures.hudFront, UI.hudPos.x, UI.hudPos.y)
+        self.draw(Assets.Textures.hudBack, UI.hudPos().x, UI.hudPos().y)
+        self.draw(Assets.Textures.hud, UI.hudPos().x, UI.hudPos().y, 80 * shared.hits, 64, 0, 0, 80 * shared.hits, 64, false, false)
+        self.draw(Assets.Textures.hudFront, UI.hudPos().x, UI.hudPos().y)
         Assets.Fonts.moneyFrontFont.draw(self, "~: " + s"${shared.money}", UI.moneyPos.x, UI.moneyPos.y)
         Assets.Fonts.moneyFrontFont.draw(self, s"time:${(Const.Timing.levelTime - shared.lvlTime).toLong}", UI.timePos.x, UI.timePos.y)
         Assets.Fonts.moneyFrontFont.draw(self, s"lvl:${shared.lvl}", UI.lvlPos.x, UI.lvlPos.y)
@@ -74,10 +74,10 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
     bgBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
     val wndBatch = new SpriteBatch
     wndBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
-    val creaturesBatch = new MagicSpriteBatch
+    val creaturesBatch = new MagicSpriteBatch(UI.drawDebug())
     creaturesBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
     var time = 0f
-    val weaponsBatch = new MagicSpriteBatch
+    val weaponsBatch = new MagicSpriteBatch(UI.drawDebug())
     weaponsBatch.setProjectionMatrix(new Matrix4().setToOrtho2D(0, 0, UI.screenSize.x, UI.screenSize.y))
 
     override def render(delta: Float): Unit = {

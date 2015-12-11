@@ -39,7 +39,7 @@ case class PotRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean,
   extends Room {
   override def weaponPrice = basePrice * Const.Difficulty.potMul
 
-  override def cooldownTime: Float = Const.Difficulty.potRoomCooldown
+  override def cooldownTime: Float = Const.Difficulty.potRoomCooldown()
 }
 
 case class TVRoom(var bought: Boolean, var broken: Boolean, var grate: Boolean, var armed: Boolean, var cooldown: Boolean, basePrice: Int, x: Int, y: Int, var grateLives: Int = Difficulty.grateLives)

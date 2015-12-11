@@ -8,7 +8,7 @@ import javafx.stage.Stage
 import com.badlogic.gdx.backends.lwjgl.{LwjglApplication, LwjglApplicationConfiguration}
 import javafx.application.Application
 
-import com.catinthedark.lib.constants.{IRangeControl, IRange, ConstDelegate}
+import com.catinthedark.lib.constants._
 import com.catinthedark.sszb.common.Const
 
 /**
@@ -21,8 +21,14 @@ class MyApplication extends Application {
     val root: VBox = FXMLLoader.load(getClass().getClassLoader.getResource("layout.fxml"));
     Const.delegate.foreach { d =>
       val el = d match {
+        case onOff: OnOff =>
+          new OnOffControl(onOff, FXMLLoader.load(getClass().getClassLoader.getResource("onOff.fxml"))).el
         case range: IRange =>
           new IRangeControl(range, FXMLLoader.load(getClass().getClassLoader.getResource("range.fxml"))).el
+        case range: FRange =>
+          new FRangeControl(range, FXMLLoader.load(getClass().getClassLoader.getResource("range.fxml"))).el
+        case range: Vec2Range =>
+          new Vec2RangeControl(range, FXMLLoader.load(getClass().getClassLoader.getResource("vec2Range.fxml"))).el
       }
       root.getChildren.add(el)
     }

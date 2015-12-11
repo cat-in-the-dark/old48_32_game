@@ -10,9 +10,10 @@ import scala.util.Random
   * Created by over on 11.12.15.
   */
 object Const extends ConstDelegate {
-  override def delegate = Seq(UI.bottomRow)
+  override def delegate = Seq(UI.drawDebug, UI.bottomRow, Difficulty.potRoomCooldown, UI.hudPos)
 
   object UI {
+    val drawDebug = onOff("debug render", false)
     val bottomRow = irange("bottom row", 16, Some(-100), Some(100))
     val topRow = 122
 
@@ -21,7 +22,8 @@ object Const extends ConstDelegate {
     var COOLDOWN_INDICATOR_ROW = new Vector2(1185, 390)
     val gameRect = new Rectangle(345, 185, 750, 520)
 
-    val hudPos = new Vector2(961, 699)
+    val hudPos = vec2Range("hud position", new Vector2(961, 699))
+    //val hudPos = vec2Range("hud position", new Vector2(100, 100))
     val moneyPos = new Vector2(1150, 685)
     val timePos = new Vector2(1150, 650)
     val lvlPos = new Vector2(1150, 615)
@@ -45,7 +47,7 @@ object Const extends ConstDelegate {
   }
 
   object Difficulty {
-    val potRoomCooldown = 1f
+    val potRoomCooldown = frange("pot cooldown", 1, Some(0), Some(5))
     val tvRoomCooldown = 2f
     val royalRoomCooldown = 3f
 
