@@ -76,10 +76,10 @@ class WeightControl(shared: Shared) extends SimpleUnit {
             && (creature.roadNumber == 1)) {
             creature match {
               case h: Hooligan =>
-                val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+                val y = if (h.roadNumber == 0) Const.UI.bottomRow() else Const.UI.topRow
                 killHooligan(h.x, y)
               case w: Whore =>
-                val y = if (w.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+                val y = if (w.roadNumber == 0) Const.UI.bottomRow() else Const.UI.topRow
                 killWhore(w.x, y)
               case _ =>
             }
@@ -98,10 +98,10 @@ class WeightControl(shared: Shared) extends SimpleUnit {
             || ((wx1 >= cx1) && ((wx1 <= cx2) || (wx2 <= cx2)))) {
             creature match {
               case h: Hooligan =>
-                val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+                val y = if (h.roadNumber == 0) Const.UI.bottomRow() else Const.UI.topRow
                 killHooligan(h.x, y)
               case w: Whore =>
-                val y = if (w.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+                val y = if (w.roadNumber == 0) Const.UI.bottomRow() else Const.UI.topRow
                 killWhore(w.x, y)
               case _ =>
             }

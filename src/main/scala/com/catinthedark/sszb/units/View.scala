@@ -142,9 +142,11 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
               } else {
                 Animations.whore
               }
-              val y = if (w.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+
+              val y = if (w.roadNumber == 0) Const.UI.bottomRow() else Const.UI.topRow
               val viewPos = new Rectangle(w.x, y, w.width, 128)
               self.drawWithDebug(animation.getKeyFrame(w.stateTime), viewPos, viewPos)
+
               w.stateTime += delta
             case h: Hooligan =>
               val animation = if (h.attacking) {
@@ -156,9 +158,11 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
               } else {
                 Animations.hooligan
               }
-              val y = if (h.roadNumber == 0) Const.UI.bottomRow else Const.UI.topRow
+
+              val y = if (h.roadNumber == 0) Const.UI.bottomRow() else Const.UI.topRow
               val viewPos = new Rectangle(h.x, y, h.width, 128)
               self.drawWithDebug(animation.getKeyFrame(h.stateTime), viewPos, viewPos)
+
               h.stateTime += delta
             case _ =>
           }

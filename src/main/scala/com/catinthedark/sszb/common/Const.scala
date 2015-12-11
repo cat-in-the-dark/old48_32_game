@@ -1,26 +1,25 @@
 package com.catinthedark.sszb.common
 
 import com.badlogic.gdx.math.{Rectangle, Vector2}
-import com.catinthedark.sszb.entity.{Whore, Hooligan, Creature}
+import com.catinthedark.lib.constants.{Range, ConstDelegate}
+import com.catinthedark.sszb.entity.{Whore, Hooligan}
 
 import scala.util.Random
 
 /**
- * Created by over on 03.01.15.
- */
-object Const {
+  * Created by over on 11.12.15.
+  */
+object Const extends ConstDelegate {
+  override def delegate = Seq(UI.bottomRow)
 
   object UI {
-    val bottomRow = 16
+    val bottomRow = irange("bottom row", 16, Some(-100), Some(100))
     val topRow = 122
 
     val screenSize = new Vector2(1366, 768)
     var COOLDOWN_INDICATOR_COL = new Vector2(1185, 510)
     var COOLDOWN_INDICATOR_ROW = new Vector2(1185, 390)
     val gameRect = new Rectangle(345, 185, 750, 520)
-
-    val colFistY = 770f
-    val rowFistX = 160f
 
     val hudPos = new Vector2(961, 699)
     val moneyPos = new Vector2(1150, 685)
@@ -114,9 +113,10 @@ object Const {
     val seedDivider = 10
 
     val clubPrice = clubBase * buyMul
+
     /**
-     * seed in range [0,9]
-     */
+      * seed in range [0,9]
+      */
     def spawnRandom(lvl: Int, seed: Int): (Boolean, Boolean) = {
       lvl match {
         case 1 => if (seed < 5) (true, false) else (false, true)
@@ -164,13 +164,4 @@ object Const {
     val levelTime = 30f
     val selfieDelay = 0.5f
   }
-
-  object Ints {
-    var i: Int = 5
-  }
-
-  object Strings {
-    var str = "Hello, World!"
-  }
-
 }
