@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.{GL20, Texture}
 import com.catinthedark.lib.Magic._
+import com.catinthedark.sszb.common.Const
 
 /**
  * Created by over on 13.12.14.
@@ -15,7 +16,7 @@ trait TextureState extends Stub {
   override def run(delta: Float): Option[Unit] = {
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT)
     batch.managed { self: SpriteBatch =>
-      self.draw(texture, 0, 0)
+      self.draw(texture, 0, 0, Const.Projection.width, Const.Projection.height)
     }
     super.run(delta)
   }

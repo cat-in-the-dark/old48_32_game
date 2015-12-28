@@ -166,4 +166,9 @@ object Const extends ConstDelegate {
     val levelTime = 30f
     val selfieDelay = 0.5f
   }
+
+  object Projection {
+    val width = 1161
+    val height = 652
+  }
 }
