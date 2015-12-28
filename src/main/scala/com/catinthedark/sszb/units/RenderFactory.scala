@@ -14,9 +14,9 @@ object RenderFactory {
       Array((1, Difficulty.enourmoslyRichroom), (1, Difficulty.richRoom), (2, Difficulty.richRoom), (2, Difficulty.normalRoom), (1, Difficulty.normalRoom), (3, Difficulty.richRoom)),
       Array((3, Difficulty.richRoom), (3, Difficulty.richRoom), (1, Difficulty.cheapRoom), (3, Difficulty.normalRoom), (2, Difficulty.normalRoom), (1, Difficulty.cheapRoom))
     )
-    val rooms = (for {i <- 0 to lvl.length - 1
+    val rooms = (for {i <- lvl.indices
                       line = (for {
-                        j <- 0 to lvl(0).length - 1
+                        j <- lvl(0).indices
                         room = (lvl(i)(j) match {
                           case (1, price) => PotRoom(false, false, false, false, true, price, j, i)
                           case (2, price) => TVRoom(false, false, false, false, true, price, j, i)

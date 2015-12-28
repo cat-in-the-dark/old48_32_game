@@ -44,9 +44,9 @@ abstract class Control(shared: Shared) extends SimpleUnit with Deferred {
           case Input.Keys.P =>
             shared.hits += 1
           case Input.Keys.ESCAPE =>
-            onGameReload()
+            onGameReload(())
           case Input.Keys.L =>
-            onManualDay()
+            onManualDay(())
           case _ =>
         }
 

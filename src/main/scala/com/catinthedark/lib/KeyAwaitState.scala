@@ -21,7 +21,7 @@ trait KeyAwaitState extends Stub {
   }
 
   override def run(delay: Float): Option[Unit] =
-    if (done) Some()
+    if (done) Some(())
     else super.run(delay)
 
   override def onExit(): Unit = {

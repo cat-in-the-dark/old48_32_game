@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Vector2
 
+import scala.language.implicitConversions
+
 /**
  * Created by over on 13.12.14.
  */

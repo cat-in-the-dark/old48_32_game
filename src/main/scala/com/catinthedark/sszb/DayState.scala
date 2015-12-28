@@ -129,8 +129,8 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     batch.managed { self =>
       self.draw(Textures.bgDay, 0, 0)
       self.draw(Textures.clublightDay, Const.Physics.clubXPos, Const.Physics.clubYPos)
-      for (i <- 0 to shared.rooms.length - 1;
-           j <- 0 to shared.rooms(0).length - 1) {
+      for (i <- shared.rooms.indices;
+           j <- shared.rooms(0).indices) {
 
         val room = shared.rooms(i)(j)
 
@@ -153,7 +153,7 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
           case _ => None
         }
 
-        bgTex.map { tex =>
+        bgTex.foreach { tex =>
           self.draw(tex, j * 128 + 128, i * 128 + 256)
         }
 

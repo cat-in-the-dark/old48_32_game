@@ -1,18 +1,20 @@
 package com.catinthedark.sszb.units
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.{Color, GL20}
+import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType
-import com.catinthedark.sszb.common.Const
-import com.badlogic.gdx.math.{Rectangle, MathUtils, Matrix4}
-import com.catinthedark.sszb.entity._
-import com.catinthedark.sszb.{Shared, Assets}
-import com.catinthedark.sszb.Assets.{Animations, Textures}
-import com.catinthedark.sszb.common.Const.{Difficulty, UI}
+import com.badlogic.gdx.math.{MathUtils, Matrix4, Rectangle}
 import com.catinthedark.lib.Magic._
 import com.catinthedark.lib._
+import com.catinthedark.sszb.Assets.{Animations, Textures}
+import com.catinthedark.sszb.common.Const
+import com.catinthedark.sszb.common.Const.UI
+import com.catinthedark.sszb.entity._
+import com.catinthedark.sszb.{Assets, Shared}
+
+import scala.language.reflectiveCalls
 
 /**
  * Created by over on 02.01.15.
@@ -93,8 +95,8 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
         }
       }
       wndBatch.managed { self =>
-        for (i <- 0 to shared.rooms.length - 1;
-             j <- 0 to shared.rooms(0).length - 1) {
+        for (i <- shared.rooms.indices;
+             j <- shared.rooms(0).indices) {
           val room = shared.rooms(i)(j)
           if (!room.broken && room.armed && room.cooldown)
             room match {
@@ -115,7 +117,7 @@ abstract class View(val shared: Shared) extends SimpleUnit with Deferred {
             case _ => None
           }
 
-          bgTex.map { tex =>
+          bgTex.foreach { tex =>
             self.draw(tex, j * 128 + 128, i * 128 + 256)
           }
 
