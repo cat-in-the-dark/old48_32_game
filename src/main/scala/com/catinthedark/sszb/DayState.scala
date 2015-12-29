@@ -1,19 +1,26 @@
 package com.catinthedark.sszb
 
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.{InputAdapter, Input, Gdx}
+import com.badlogic.gdx.utils.viewport.StretchViewport
+import com.badlogic.gdx.{Gdx, Input, InputAdapter}
+import com.catinthedark.lib.Magic._
+import com.catinthedark.lib.YieldUnit
+import com.catinthedark.sszb.Assets.Textures
 import com.catinthedark.sszb.common.Const
 import com.catinthedark.sszb.common.Const.UI
-import com.catinthedark.sszb.entity.{RoyalRoom, TVRoom, PotRoom, Room}
-import com.catinthedark.lib.YieldUnit
-import com.catinthedark.lib.Magic._
-import Assets.Textures
+import com.catinthedark.sszb.entity.{PotRoom, Room, RoyalRoom, TVRoom}
 
 /**
  * Created by over on 18.04.15.
  */
 class DayState(shared: Shared) extends YieldUnit[Boolean] {
   var currentRoom = Const.Difficulty.firstRoom
+  val batch = new SpriteBatch
+  val camera = new OrthographicCamera()
+  val viewport = new StretchViewport(1368, 768, camera)
+  viewport.apply()
+  camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2,0)
 
   def repair(room: Room) = {
     if (shared.money >= room.repairPrice) {
@@ -116,8 +123,6 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
     })
   }
 
-  val batch = new SpriteBatch
-
   override def onExit(): Unit = {
     Assets.Audios.bgmBirds.stop()
     shared.lvl += 1
@@ -126,6 +131,8 @@ class DayState(shared: Shared) extends YieldUnit[Boolean] {
   var frameKF = 0f
 
   def render(delta: Float): Unit = {
+    camera.update()
+    batch.setProjectionMatrix(camera.combined)
     batch.managed { self =>
       self.draw(Textures.bgDay, 0, 0)
       self.draw(Textures.clublightDay, Const.Physics.clubXPos, Const.Physics.clubYPos)

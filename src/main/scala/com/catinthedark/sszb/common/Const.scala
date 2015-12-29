@@ -168,7 +168,7 @@ object Const extends ConstDelegate {
   }
 
   object Projection {
-    val width = 1161
-    val height = 652
+    val width = 1161 //1368
+    val height = 652 //768
   }
 }
